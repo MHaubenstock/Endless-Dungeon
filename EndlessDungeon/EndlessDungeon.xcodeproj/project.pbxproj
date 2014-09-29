@@ -1,0 +1,510 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4C00929019D2EBB800AB6D38 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C00928F19D2EBB800AB6D38 /* Player.swift */; };
+		4C00929219D2EFAA00AB6D38 /* DungeonRPG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C00929119D2EFAA00AB6D38 /* DungeonRPG.swift */; };
+		4C00929419D513B000AB6D38 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C00929319D513B000AB6D38 /* Cell.swift */; };
+		4C00929619D5A68800AB6D38 /* PlayerEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C00929519D5A68800AB6D38 /* PlayerEnums.swift */; };
+		4C0092A119D5ED1F00AB6D38 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0092A019D5ED1F00AB6D38 /* Item.swift */; };
+		4C0092A319D5EDFF00AB6D38 /* EquippableItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0092A219D5EDFF00AB6D38 /* EquippableItem.swift */; };
+		4C0BBCEF19D984DE009865DB /* BackCornerTile.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0BBCEB19D984DE009865DB /* BackCornerTile.png */; };
+		4C0BBCF019D984DE009865DB /* LeftFrontCornerTile.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0BBCEC19D984DE009865DB /* LeftFrontCornerTile.png */; };
+		4C0BBCF119D984DE009865DB /* UnexcevetedTile.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0BBCED19D984DE009865DB /* UnexcevetedTile.png */; };
+		4C0BBCF219D984DE009865DB /* WallTile.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0BBCEE19D984DE009865DB /* WallTile.png */; };
+		4C0BBCF419D98C8E009865DB /* RightFrontCornerTile.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0BBCF319D98C8E009865DB /* RightFrontCornerTile.png */; };
+		4C1F0BB019CEF799001F336B /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1F0BAF19CEF799001F336B /* Tile.swift */; };
+		4C1F0BB219CF3635001F336B /* Dungeon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1F0BB119CF3635001F336B /* Dungeon.swift */; };
+		4CC399C519CE8FAC00B42FB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC399C419CE8FAC00B42FB7 /* AppDelegate.swift */; };
+		4CC399C719CE8FAC00B42FB7 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4CC399C619CE8FAC00B42FB7 /* GameScene.sks */; };
+		4CC399C919CE8FAC00B42FB7 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC399C819CE8FAC00B42FB7 /* GameScene.swift */; };
+		4CC399CB19CE8FAC00B42FB7 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC399CA19CE8FAC00B42FB7 /* GameViewController.swift */; };
+		4CC399CE19CE8FAC00B42FB7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CC399CC19CE8FAC00B42FB7 /* Main.storyboard */; };
+		4CC399D019CE8FAC00B42FB7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CC399CF19CE8FAC00B42FB7 /* Images.xcassets */; };
+		4CC399D319CE8FAC00B42FB7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CC399D119CE8FAC00B42FB7 /* LaunchScreen.xib */; };
+		4CC399DF19CE8FAC00B42FB7 /* EndlessDungeonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC399DE19CE8FAC00B42FB7 /* EndlessDungeonTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4CC399D919CE8FAC00B42FB7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4CC399B719CE8FAC00B42FB7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4CC399BE19CE8FAC00B42FB7;
+			remoteInfo = EndlessDungeon;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		4C00928F19D2EBB800AB6D38 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		4C00929119D2EFAA00AB6D38 /* DungeonRPG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DungeonRPG.swift; sourceTree = "<group>"; };
+		4C00929319D513B000AB6D38 /* Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
+		4C00929519D5A68800AB6D38 /* PlayerEnums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerEnums.swift; sourceTree = "<group>"; };
+		4C0092A019D5ED1F00AB6D38 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		4C0092A219D5EDFF00AB6D38 /* EquippableItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EquippableItem.swift; sourceTree = "<group>"; };
+		4C0BBCEB19D984DE009865DB /* BackCornerTile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BackCornerTile.png; path = "Tile Images/Wall Tiles/BackCornerTile.png"; sourceTree = "<group>"; };
+		4C0BBCEC19D984DE009865DB /* LeftFrontCornerTile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LeftFrontCornerTile.png; path = "Tile Images/Wall Tiles/LeftFrontCornerTile.png"; sourceTree = "<group>"; };
+		4C0BBCED19D984DE009865DB /* UnexcevetedTile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = UnexcevetedTile.png; path = "Tile Images/Wall Tiles/UnexcevetedTile.png"; sourceTree = "<group>"; };
+		4C0BBCEE19D984DE009865DB /* WallTile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = WallTile.png; path = "Tile Images/Wall Tiles/WallTile.png"; sourceTree = "<group>"; };
+		4C0BBCF319D98C8E009865DB /* RightFrontCornerTile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RightFrontCornerTile.png; path = "Tile Images/Wall Tiles/RightFrontCornerTile.png"; sourceTree = "<group>"; };
+		4C1F0BAF19CEF799001F336B /* Tile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
+		4C1F0BB119CF3635001F336B /* Dungeon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dungeon.swift; sourceTree = "<group>"; };
+		4CC399BF19CE8FAC00B42FB7 /* EndlessDungeon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EndlessDungeon.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4CC399C319CE8FAC00B42FB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4CC399C419CE8FAC00B42FB7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4CC399C619CE8FAC00B42FB7 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		4CC399C819CE8FAC00B42FB7 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		4CC399CA19CE8FAC00B42FB7 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		4CC399CD19CE8FAC00B42FB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		4CC399CF19CE8FAC00B42FB7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		4CC399D219CE8FAC00B42FB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		4CC399D819CE8FAC00B42FB7 /* EndlessDungeonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EndlessDungeonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4CC399DD19CE8FAC00B42FB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4CC399DE19CE8FAC00B42FB7 /* EndlessDungeonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndlessDungeonTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4CC399BC19CE8FAC00B42FB7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4CC399D519CE8FAC00B42FB7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4C00929719D5ECD900AB6D38 /* Equipment */ = {
+			isa = PBXGroup;
+			children = (
+				4C0092A019D5ED1F00AB6D38 /* Item.swift */,
+				4C0092A219D5EDFF00AB6D38 /* EquippableItem.swift */,
+			);
+			name = Equipment;
+			sourceTree = "<group>";
+		};
+		4C0BBCE919D984BC009865DB /* Tile Images */ = {
+			isa = PBXGroup;
+			children = (
+				4C0BBCEA19D984CE009865DB /* Wall Tiles */,
+			);
+			name = "Tile Images";
+			sourceTree = "<group>";
+		};
+		4C0BBCEA19D984CE009865DB /* Wall Tiles */ = {
+			isa = PBXGroup;
+			children = (
+				4C0BBCF319D98C8E009865DB /* RightFrontCornerTile.png */,
+				4C0BBCEB19D984DE009865DB /* BackCornerTile.png */,
+				4C0BBCEC19D984DE009865DB /* LeftFrontCornerTile.png */,
+				4C0BBCED19D984DE009865DB /* UnexcevetedTile.png */,
+				4C0BBCEE19D984DE009865DB /* WallTile.png */,
+			);
+			name = "Wall Tiles";
+			sourceTree = "<group>";
+		};
+		4CC399B619CE8FAC00B42FB7 = {
+			isa = PBXGroup;
+			children = (
+				4CC399C119CE8FAC00B42FB7 /* EndlessDungeon */,
+				4CC399DB19CE8FAC00B42FB7 /* EndlessDungeonTests */,
+				4CC399C019CE8FAC00B42FB7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4CC399C019CE8FAC00B42FB7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4CC399BF19CE8FAC00B42FB7 /* EndlessDungeon.app */,
+				4CC399D819CE8FAC00B42FB7 /* EndlessDungeonTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4CC399C119CE8FAC00B42FB7 /* EndlessDungeon */ = {
+			isa = PBXGroup;
+			children = (
+				4CC399C419CE8FAC00B42FB7 /* AppDelegate.swift */,
+				4CC399C619CE8FAC00B42FB7 /* GameScene.sks */,
+				4CC399C819CE8FAC00B42FB7 /* GameScene.swift */,
+				4CC399CA19CE8FAC00B42FB7 /* GameViewController.swift */,
+				4C00929119D2EFAA00AB6D38 /* DungeonRPG.swift */,
+				4C1F0BB119CF3635001F336B /* Dungeon.swift */,
+				4C1F0BAF19CEF799001F336B /* Tile.swift */,
+				4C00929319D513B000AB6D38 /* Cell.swift */,
+				4C00928F19D2EBB800AB6D38 /* Player.swift */,
+				4C00929519D5A68800AB6D38 /* PlayerEnums.swift */,
+				4C0BBCE919D984BC009865DB /* Tile Images */,
+				4C00929719D5ECD900AB6D38 /* Equipment */,
+				4CC399CC19CE8FAC00B42FB7 /* Main.storyboard */,
+				4CC399CF19CE8FAC00B42FB7 /* Images.xcassets */,
+				4CC399D119CE8FAC00B42FB7 /* LaunchScreen.xib */,
+				4CC399C219CE8FAC00B42FB7 /* Supporting Files */,
+			);
+			path = EndlessDungeon;
+			sourceTree = "<group>";
+		};
+		4CC399C219CE8FAC00B42FB7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4CC399C319CE8FAC00B42FB7 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4CC399DB19CE8FAC00B42FB7 /* EndlessDungeonTests */ = {
+			isa = PBXGroup;
+			children = (
+				4CC399DE19CE8FAC00B42FB7 /* EndlessDungeonTests.swift */,
+				4CC399DC19CE8FAC00B42FB7 /* Supporting Files */,
+			);
+			path = EndlessDungeonTests;
+			sourceTree = "<group>";
+		};
+		4CC399DC19CE8FAC00B42FB7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4CC399DD19CE8FAC00B42FB7 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4CC399BE19CE8FAC00B42FB7 /* EndlessDungeon */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4CC399E219CE8FAC00B42FB7 /* Build configuration list for PBXNativeTarget "EndlessDungeon" */;
+			buildPhases = (
+				4CC399BB19CE8FAC00B42FB7 /* Sources */,
+				4CC399BC19CE8FAC00B42FB7 /* Frameworks */,
+				4CC399BD19CE8FAC00B42FB7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EndlessDungeon;
+			productName = EndlessDungeon;
+			productReference = 4CC399BF19CE8FAC00B42FB7 /* EndlessDungeon.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4CC399D719CE8FAC00B42FB7 /* EndlessDungeonTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4CC399E519CE8FAC00B42FB7 /* Build configuration list for PBXNativeTarget "EndlessDungeonTests" */;
+			buildPhases = (
+				4CC399D419CE8FAC00B42FB7 /* Sources */,
+				4CC399D519CE8FAC00B42FB7 /* Frameworks */,
+				4CC399D619CE8FAC00B42FB7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4CC399DA19CE8FAC00B42FB7 /* PBXTargetDependency */,
+			);
+			name = EndlessDungeonTests;
+			productName = EndlessDungeonTests;
+			productReference = 4CC399D819CE8FAC00B42FB7 /* EndlessDungeonTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4CC399B719CE8FAC00B42FB7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = "Michael Haubenstock";
+				TargetAttributes = {
+					4CC399BE19CE8FAC00B42FB7 = {
+						CreatedOnToolsVersion = 6.0.1;
+					};
+					4CC399D719CE8FAC00B42FB7 = {
+						CreatedOnToolsVersion = 6.0.1;
+						TestTargetID = 4CC399BE19CE8FAC00B42FB7;
+					};
+				};
+			};
+			buildConfigurationList = 4CC399BA19CE8FAC00B42FB7 /* Build configuration list for PBXProject "EndlessDungeon" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4CC399B619CE8FAC00B42FB7;
+			productRefGroup = 4CC399C019CE8FAC00B42FB7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4CC399BE19CE8FAC00B42FB7 /* EndlessDungeon */,
+				4CC399D719CE8FAC00B42FB7 /* EndlessDungeonTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4CC399BD19CE8FAC00B42FB7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C0BBCF419D98C8E009865DB /* RightFrontCornerTile.png in Resources */,
+				4CC399D319CE8FAC00B42FB7 /* LaunchScreen.xib in Resources */,
+				4C0BBCEF19D984DE009865DB /* BackCornerTile.png in Resources */,
+				4CC399D019CE8FAC00B42FB7 /* Images.xcassets in Resources */,
+				4C0BBCF219D984DE009865DB /* WallTile.png in Resources */,
+				4CC399C719CE8FAC00B42FB7 /* GameScene.sks in Resources */,
+				4CC399CE19CE8FAC00B42FB7 /* Main.storyboard in Resources */,
+				4C0BBCF119D984DE009865DB /* UnexcevetedTile.png in Resources */,
+				4C0BBCF019D984DE009865DB /* LeftFrontCornerTile.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4CC399D619CE8FAC00B42FB7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4CC399BB19CE8FAC00B42FB7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C00929219D2EFAA00AB6D38 /* DungeonRPG.swift in Sources */,
+				4C00929619D5A68800AB6D38 /* PlayerEnums.swift in Sources */,
+				4CC399C919CE8FAC00B42FB7 /* GameScene.swift in Sources */,
+				4CC399CB19CE8FAC00B42FB7 /* GameViewController.swift in Sources */,
+				4C0092A119D5ED1F00AB6D38 /* Item.swift in Sources */,
+				4C0092A319D5EDFF00AB6D38 /* EquippableItem.swift in Sources */,
+				4C1F0BB219CF3635001F336B /* Dungeon.swift in Sources */,
+				4CC399C519CE8FAC00B42FB7 /* AppDelegate.swift in Sources */,
+				4C00929419D513B000AB6D38 /* Cell.swift in Sources */,
+				4C00929019D2EBB800AB6D38 /* Player.swift in Sources */,
+				4C1F0BB019CEF799001F336B /* Tile.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4CC399D419CE8FAC00B42FB7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4CC399DF19CE8FAC00B42FB7 /* EndlessDungeonTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4CC399DA19CE8FAC00B42FB7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4CC399BE19CE8FAC00B42FB7 /* EndlessDungeon */;
+			targetProxy = 4CC399D919CE8FAC00B42FB7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		4CC399CC19CE8FAC00B42FB7 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4CC399CD19CE8FAC00B42FB7 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		4CC399D119CE8FAC00B42FB7 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4CC399D219CE8FAC00B42FB7 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4CC399E019CE8FAC00B42FB7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4CC399E119CE8FAC00B42FB7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4CC399E319CE8FAC00B42FB7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = EndlessDungeon/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		4CC399E419CE8FAC00B42FB7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = EndlessDungeon/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		4CC399E619CE8FAC00B42FB7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = EndlessDungeonTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EndlessDungeon.app/EndlessDungeon";
+			};
+			name = Debug;
+		};
+		4CC399E719CE8FAC00B42FB7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = EndlessDungeonTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EndlessDungeon.app/EndlessDungeon";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4CC399BA19CE8FAC00B42FB7 /* Build configuration list for PBXProject "EndlessDungeon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4CC399E019CE8FAC00B42FB7 /* Debug */,
+				4CC399E119CE8FAC00B42FB7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4CC399E219CE8FAC00B42FB7 /* Build configuration list for PBXNativeTarget "EndlessDungeon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4CC399E319CE8FAC00B42FB7 /* Debug */,
+				4CC399E419CE8FAC00B42FB7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4CC399E519CE8FAC00B42FB7 /* Build configuration list for PBXNativeTarget "EndlessDungeonTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4CC399E619CE8FAC00B42FB7 /* Debug */,
+				4CC399E719CE8FAC00B42FB7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4CC399B719CE8FAC00B42FB7 /* Project object */;
+}

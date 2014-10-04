@@ -19,18 +19,23 @@ class EquippableItem : Item
     var damageType : DamageType
     var armorType : ArmorType
     
-    enum Slot
+    enum Slot : String
     {
-        case OneHanded
-        case TwoHanded
-        case Ammo
-        case Body
-        case Shoulders
-        case Head
-        case Hands
-        case Wrists
-        case Feet
-        case None
+        case OneHanded = "One-Handed"
+        case TwoHanded = "Two-Handed"
+        case Ammo = "Ammo"
+        case Head = "Head"
+        case Eyes = "Eyes"
+        case Neck = "Neck"
+        case Torso = "Torso"
+        case Body = "Body"
+        case Waist = "Waist"
+        case Shoulders = "Shoulders"
+        case Wrists = "Wrists"
+        case Hands = "Hands"
+        case Ring = "Ring"
+        case Feet = "Feet"
+        case None = "None"
     }
     
     enum WeaponCategory

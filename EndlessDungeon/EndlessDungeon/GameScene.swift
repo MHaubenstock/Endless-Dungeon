@@ -39,7 +39,7 @@ class GameScene: SKScene
         player = Player(playerName: "Player1")
 
         //Add player to dungeon
-        dungeon.addPlayerAtLocation(player, location: dungeon.entranceTile.tileSprite.childNodeWithName("Entrance")!.position)
+        dungeon.addPlayerAtLocation(player, location: dungeon.entranceTile.entranceCell.position)
         
         lastTileSprite = dungeon.entranceTile.tileSprite
         
@@ -60,12 +60,15 @@ class GameScene: SKScene
             let location = touch.locationInNode(self)
             let touchedNode = self.nodeAtPoint(location)
 
+            debugPrintln(dungeon.cellAtScreenLocation(touchedNode.position)?.cellImage)
+            /*
             if(dungeon.cellTypeAtScreenLocation(touchedNode.position) == Tile.CellType.Exit)
             {
                 self.removeChildrenInArray([lastTileSprite])
                 
                 self.addChild(dungeon.transitionToTileInDirection(dungeon.wallDirectionOfEntranceOrExitAtPosition(touchedNode.position)).tileSprite)
             }
+            */
         }
     }
     */
@@ -97,6 +100,7 @@ class GameScene: SKScene
                 debugPrintln("Not sure which direction you swiped... are you a wizard?")
         }
         
+        //Moves to new tile
         if nextTileSprite != nil
         {
             self.removeChildrenInArray([lastTileSprite])

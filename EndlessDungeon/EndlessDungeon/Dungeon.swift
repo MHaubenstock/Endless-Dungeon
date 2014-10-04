@@ -15,11 +15,10 @@ class Dungeon
     var cellSize : Int?
     var width : Int = 1
     var entranceTile : Tile!
-    var entranceCell : CGPoint!
     
     var gridLeft : CGFloat!
     var gridBottom : CGFloat!
-    var currentTilePos : CGPoint!
+    var currentTilePos : (Int, Int)
     
     var numXCells : Int!
     var numYCells : Int!
@@ -51,14 +50,16 @@ class Dungeon
         numXCells = Int(screenWidth / CGFloat(cellSize!))
         numYCells = Int(screenHeight / CGFloat(cellSize!))
         
-        entranceTile = Tile(nXCells: numXCells, nYCells: numYCells)
+        entranceTile = Tile(nXCells: numXCells, nYCells: numYCells, gridLeft: gridLeft, gridBottom: gridBottom, cellSize: cellSize!)
         
         //Populate entrance tile
         tiles.append(Array(count: 1, repeatedValue: entranceTile))
         
-        currentTilePos = CGPoint(x: 0, y: 0)
+        currentTilePos = (0, 0)
+        
         generateEntrance()
-        tiles[Int(currentTilePos.y)][Int(currentTilePos.x)] = entranceTile
+        
+        tiles[currentTilePos.1][currentTilePos.0] = entranceTile
     }
     
     func drawTile(x : Int, y : Int) -> SKSpriteNode
@@ -80,71 +81,72 @@ class Dungeon
         {
             case .North:
                 //If you need a new tile in the north direction
-                if Int(currentTilePos.y) == 0
+                if currentTilePos.1 == 0
                 {
                     //Extend array
-                    tiles.insert(Array(count: width, repeatedValue: Tile(nXCells: numXCells, nYCells: numYCells)), atIndex: 0)
-                    nextTile = generateRoomForTile(Int(currentTilePos.x), tileY: 0)
-                    tiles[Int(currentTilePos.y)][Int(currentTilePos.x)] = nextTile
+                    tiles.insert(Array(count: width, repeatedValue: Tile(nXCells: numXCells, nYCells: numYCells, gridLeft: gridLeft, gridBottom: gridBottom, cellSize: cellSize!)), atIndex: 0)
+                    nextTile = generateRoomForTile(currentTilePos.0, tileY: 0)
+                    tiles[currentTilePos.1][currentTilePos.0] = nextTile
                 }
                 else
                 {
-                    nextTile = tiles[Int(currentTilePos.y - 1)][Int(currentTilePos.x)]
-                    currentTilePos.y -= 1
+                    nextTile = tiles[currentTilePos.1 - 1][currentTilePos.0]
+                    //THIS LINE MIGHT BE BROKEN, ALSO IN OTHER CASES
+                    currentTilePos.1 -= 1
                 }
                 
             case .South:
                 //If you need a new tile in the south direction
-                if Int(currentTilePos.y) == tiles.count - 1
+                if currentTilePos.1 == tiles.count - 1
                 {
                     //Extend array
-                    tiles.append(Array(count: width, repeatedValue: Tile(nXCells: numXCells, nYCells: numYCells)))
-                    nextTile = generateRoomForTile(Int(currentTilePos.x), tileY: Int(currentTilePos.y + 1))
-                    tiles[Int(currentTilePos.y + 1)][Int(currentTilePos.x)] = nextTile
+                    tiles.append(Array(count: width, repeatedValue: Tile(nXCells: numXCells, nYCells: numYCells, gridLeft: gridLeft, gridBottom: gridBottom, cellSize: cellSize!)))
+                    nextTile = generateRoomForTile(currentTilePos.0, tileY: currentTilePos.1 + 1)
+                    tiles[currentTilePos.1 + 1][currentTilePos.0] = nextTile
                 }
                 else
                 {
-                    nextTile = tiles[Int(currentTilePos.y + 1)][Int(currentTilePos.x)]
+                    nextTile = tiles[currentTilePos.1 + 1][currentTilePos.0]
                 }
             
-                currentTilePos.y += 1
+                currentTilePos.1 += 1
             
             case .East:
                 //If you need a new tile in the east direction
-                if Int(currentTilePos.x) == tiles[Int(currentTilePos.y)].count - 1
+                if currentTilePos.0 == tiles[currentTilePos.1].count - 1
                 {
                     //Extend array
                     setDungeonWidth(width + 1, appendToFront: false)
-                    nextTile = generateRoomForTile(Int(currentTilePos.x + 1), tileY: Int(currentTilePos.y))
-                    tiles[Int(currentTilePos.y)][Int(currentTilePos.x + 1)] = nextTile
+                    nextTile = generateRoomForTile(currentTilePos.0 + 1, tileY: currentTilePos.1)
+                    tiles[currentTilePos.1][currentTilePos.0 + 1] = nextTile
                 }
                 else
                 {
-                    nextTile = tiles[Int(currentTilePos.y)][Int(currentTilePos.x + 1)]
+                    nextTile = tiles[currentTilePos.1][currentTilePos.0 + 1]
                 }
                 
-                currentTilePos.x += 1
+                currentTilePos.0 += 1
             
             case .West:
                 //If you need a new tile in the west direction
-                if Int(currentTilePos.x) == 0
+                if currentTilePos.0 == 0
                 {
                     //Extend array
                     setDungeonWidth(width + 1, appendToFront: true)
-                    nextTile = generateRoomForTile(0, tileY: Int(currentTilePos.y))
-                    tiles[Int(currentTilePos.y)][Int(currentTilePos.x)] = nextTile
+                    nextTile = generateRoomForTile(0, tileY: currentTilePos.1)
+                    tiles[currentTilePos.1][currentTilePos.0] = nextTile
                 }
                 else
                 {
-                    nextTile = tiles[Int(currentTilePos.y)][Int(currentTilePos.x - 1)]
-                    currentTilePos.x -= 1
+                    nextTile = tiles[currentTilePos.1][currentTilePos.0 - 1]
+                    currentTilePos.0 -= 1
                 }
             
             default:
-                return Tile(nXCells: numXCells, nYCells: numYCells)
+                return Tile(nXCells: numXCells, nYCells: numYCells, gridLeft: gridLeft, gridBottom: gridBottom, cellSize: cellSize!)
         }
         
-        nextTile.tileSprite = drawTile(Int(currentTilePos.x), y: Int(currentTilePos.y))
+        nextTile.tileSprite = drawTile(currentTilePos.0, y: currentTilePos.1)
         
         return nextTile
     }
@@ -154,120 +156,145 @@ class Dungeon
         //Roll for entrance
         //Save this so you dont create an exit on the same wall as the entrance
         var entranceDirection : Direction = getDirectionWithWeights(5, southWeight: 5, eastWeight: 5, westWeight: 5)
-        var entranceLocation : CGPoint = rollDoorLocationForDirection(entranceDirection)
+        var entranceLocation : (Int, Int) = rollDoorLocationForDirection(entranceDirection)
         
         //Make dungeon entrance
-        entranceTile.cells[Int(entranceLocation.y)][Int(entranceLocation.x)] = .Entrance
-        entranceCell = CGPoint(x: Int(entranceLocation.x), y: Int(entranceLocation.y))
+        entranceTile.entranceCell = entranceTile.cells[entranceLocation.1][entranceLocation.0]
+        entranceTile.entranceCell.cellType = .Entrance
         
         //Roll for exits
         var numOfExits : Int = Int(arc4random_uniform(3)) + 1    //1 to 3 exits
         
         for c in 0...(numOfExits - 1)
         {
-            entranceTile.exitPositions.append(rollDoorLocationForDirection(getDirectionWithWeights((entranceDirection == .North ? 0 : 1), southWeight: (entranceDirection == .South ? 0 : 1), eastWeight: (entranceDirection == .East ? 0 : 1), westWeight: (entranceDirection == .West ? 0 : 1))))
+            //entranceTile.exitPositions.append(rollDoorLocationForDirection(getDirectionWithWeights((entranceDirection == .North ? 0 : 1), southWeight: (entranceDirection == .South ? 0 : 1), eastWeight: (entranceDirection == .East ? 0 : 1), westWeight: (entranceDirection == .West ? 0 : 1))))
+            
+            var doorLocation = rollDoorLocationForDirection(getDirectionWithWeights((entranceDirection == .North ? 0 : 1), southWeight: (entranceDirection == .South ? 0 : 1), eastWeight: (entranceDirection == .East ? 0 : 1), westWeight: (entranceDirection == .West ? 0 : 1)))
+            
+            entranceTile.exitCells.append(entranceTile.cells[doorLocation.1][doorLocation.0])
             
             //Make exit
-            entranceTile.cells[Int(entranceTile.exitPositions.last!.y)][Int(entranceTile.exitPositions.last!.x)] = .Exit
+            //entranceTile.cells[Int(entranceTile.exitPositions.last!.y)][Int(entranceTile.exitPositions.last!.x)] = .Exit
+            entranceTile.cells[doorLocation.1][doorLocation.0].cellType = .Exit
         }
         
         //Walk from entrance to each exit
-        var currentPosition : CGPoint = entranceLocation
+        var currentPosition : (Int, Int) = entranceLocation
         var noise : CGFloat = 50 //The higher the noise the more empty a tile should be
         
-        for exit in entranceTile.exitPositions
+        for exitCell in entranceTile.exitCells
         {
-            while currentPosition != exit
+            var exit : (Int, Int) = exitCell.index
+            
+            while currentPosition.0 != exit.0 || currentPosition.1 != exit.1
             {
-                var nextPosition : CGPoint = getNeighborCellPositionForPositionAndDirection(currentPosition, exitDirection: getDirectionWithWeights((exit.y - currentPosition.y) + noise, southWeight: (currentPosition.y - exit.y) + noise, eastWeight: (exit.x - currentPosition.x) + noise, westWeight: (currentPosition.x - exit.x) + noise))
+                var nextPosition : (Int, Int) = Dungeon.getNeighborCellindex(currentPosition, exitDirection: getDirectionWithWeights(CGFloat(exit.1 - currentPosition.1) + noise, southWeight: CGFloat(currentPosition.1 - exit.1) + noise, eastWeight: CGFloat(exit.0 - currentPosition.0) + noise, westWeight: CGFloat(currentPosition.0 - exit.0) + noise))
                 
                 if isValidCell(nextPosition)
                 {
-                    entranceTile.cells[Int(nextPosition.y)][Int(nextPosition.x)] = .Empty
+                    entranceTile.cells[nextPosition.1][nextPosition.0].cellType = .Empty
                     currentPosition = nextPosition
                 }
-                else if nextPosition == exit
+                else if nextPosition.0 == exit.0 && nextPosition.1 == exit.1
                 {
                     currentPosition = nextPosition
                 }
             }
         }
         
+        processTileCells(entranceTile)
+        
         entranceTile.roomGenerated = true
-        entranceTile.tileSprite = drawTile(Int(currentTilePos.x), y: Int(currentTilePos.y))
+        entranceTile.tileSprite = drawTile(currentTilePos.0, y: currentTilePos.1)
     }
 
     func generateRoomForTile(tileX : Int, tileY : Int) -> Tile
     {
-        var nextTile : Tile = Tile(nXCells: numXCells, nYCells: numYCells)
+        var nextTile : Tile = Tile(nXCells: numXCells, nYCells: numYCells, gridLeft: gridLeft, gridBottom: gridBottom, cellSize: cellSize!)
         var hasNorthExits : Bool = false
         var hasSouthExits : Bool = false
         var hasEastExits : Bool = false
         var hasWestExits : Bool = false
+        var exitPositions : [(Int, Int)] = [(Int, Int)]()
         
         //Add exits from other surrounding already generated tiles
         //Only already generated tiles will have exits
         if tileY > 0
         {
-            nextTile.exitPositions += getExitsOnWallForTile(tiles[tileY - 1][tileX], direction: .South)
+            exitPositions += getExitsOnWallForTile(tiles[tileY - 1][tileX], direction: .South)
+            //nextTile.exitCells += getExitsCellsOnWallForTile(tiles[tileY - 1][tileX], direction: .South)
             hasNorthExits = true
         }
         
         if tileY < tiles.count - 1
         {
-            nextTile.exitPositions += getExitsOnWallForTile(tiles[tileY + 1][tileX], direction: .North)
+            exitPositions += getExitsOnWallForTile(tiles[tileY + 1][tileX], direction: .North)
+            //nextTile.exitCells += getExitsCellsOnWallForTile(tiles[tileY + 1][tileX], direction: .North)
             hasSouthExits = true
         }
         
         if tileX > 0
         {
-            nextTile.exitPositions += getExitsOnWallForTile(tiles[tileY][tileX - 1], direction: .East)
+            exitPositions += getExitsOnWallForTile(tiles[tileY][tileX - 1], direction: .East)
+            //nextTile.exitCells += getExitsCellsOnWallForTile(tiles[tileY][tileX - 1], direction: .East)
             hasWestExits = true
         }
         
         if tileX < width - 1
         {
-            nextTile.exitPositions += getExitsOnWallForTile(tiles[tileY][tileX + 1], direction: .West)
+            exitPositions += getExitsOnWallForTile(tiles[tileY][tileX + 1], direction: .West)
+            //nextTile.exitCells += getExitsCellsOnWallForTile(tiles[tileY][tileX + 1], direction: .West)
             hasEastExits = true
         }
         //
-        
-        for pos in nextTile.exitPositions
+
+        for pos in exitPositions
         {
-            nextTile.cells[Int(pos.y)][Int(pos.x)] = .Exit
+            nextTile.exitCells.append(nextTile.cells[pos.1][pos.0])
+            nextTile.cells[pos.1][pos.0].cellType = .Exit
         }
+        
+        /*
+        for cell in nextTile.exitCells
+        {
+            cell.cellType = .Exit
+        }
+        */
         
         //Roll for exits
         var numOfExits : Int = Int(arc4random_uniform(3)) + 1    //1 to 3 exits
         
         for c in 0...(numOfExits - 1)
         {
-            nextTile.exitPositions.append(rollDoorLocationForDirection(getDirectionWithWeights((hasNorthExits ? 0 : 1), southWeight: (hasSouthExits ? 0 : 1), eastWeight: (hasEastExits ? 0 : 1), westWeight: (hasWestExits ? 0 : 1))))
+            var doorLocation = rollDoorLocationForDirection(getDirectionWithWeights((hasNorthExits ? 0 : 1), southWeight: (hasSouthExits ? 0 : 1), eastWeight: (hasEastExits ? 0 : 1), westWeight: (hasWestExits ? 0 : 1)))
+            
+            nextTile.exitCells.append(nextTile.cells[doorLocation.1][doorLocation.0])
             
             //Make exit
-            nextTile.cells[Int(nextTile.exitPositions.last!.y)][Int(nextTile.exitPositions.last!.x)] = .Exit
+            nextTile.cells[doorLocation.1][doorLocation.0].cellType = .Exit
         }
         
         //Walk from an exit to each other exit
         //Use first exit now, should be exit from last tile
         //Change to use exact exit from last tile later
-        var currentPosition : CGPoint = nextTile.exitPositions[0]
+        var currentPosition : (Int, Int) = nextTile.exitCells[0].index
         var noise : CGFloat = 50 //The higher the noise the more empty a tile should be
         
-        for exit in nextTile.exitPositions
+        for exitCell in nextTile.exitCells
         {
-            while currentPosition != exit
+            var exit : (Int, Int) = exitCell.index
+            
+            while currentPosition.0 != exit.0 || currentPosition.1 != exit.1
             {
-                var nextPosition : CGPoint = getNeighborCellPositionForPositionAndDirection(currentPosition, exitDirection: getDirectionWithWeights((exit.y - currentPosition.y) + noise, southWeight: (currentPosition.y - exit.y) + noise, eastWeight: (exit.x - currentPosition.x) + noise, westWeight: (currentPosition.x - exit.x) + noise))
+                var nextPosition : (Int, Int) = Dungeon.getNeighborCellindex(currentPosition, exitDirection: getDirectionWithWeights(CGFloat(exit.1 - currentPosition.1) + noise, southWeight: CGFloat(currentPosition.1 - exit.1) + noise, eastWeight: CGFloat(exit.0 - currentPosition.0) + noise, westWeight: CGFloat(currentPosition.0 - exit.0) + noise))
                 
                 if isValidCell(nextPosition)
                 {
-                    nextTile.cells[Int(nextPosition.y)][Int(nextPosition.x)] = .Empty
+                    nextTile.cells[nextPosition.1][nextPosition.0].cellType = .Empty
                     currentPosition = nextPosition
                 }
-                else if nextPosition == exit
+                else if nextPosition.0 == exit.0 && nextPosition.1 == exit.1
                 {
-                    //cells[Int(nextPosition.y)][Int(nextPosition.x)] = .Exit
                     currentPosition = nextPosition
                 }
             }
@@ -282,7 +309,94 @@ class Dungeon
     
     func processTileCells(tile : Tile)
     {
-        
+        //This function looks at each cell and decides which image to use
+        for cellRow in tile.cells
+        {
+            for cell in cellRow
+            {
+                //Dictionary of neighbor cells
+                var nCells : Dictionary<Direction, Cell> = tile.getNeighboringCells(cell, getDiagonals: false)
+
+                var nType : Cell.CellType? = nCells[.North]?.cellType
+                var sType : Cell.CellType? = nCells[.South]?.cellType
+                var eType : Cell.CellType? = nCells[.East]?.cellType
+                var wType : Cell.CellType? = nCells[.West]?.cellType
+                
+                var n : Bool = nType == .Wall
+                var s : Bool = sType == .Wall
+                var e : Bool = eType == .Wall
+                var w : Bool = wType == .Wall
+                
+                if(cell.cellType == .Empty || cell.cellType == .Exit || cell.cellType == .Entrance)
+                {
+                    cell.cellImage = "FloorTile.png"
+                }
+                else if(!n && !s && !e && !w)
+                {
+                    cell.cellImage = "Column.png"
+                }
+                else if(!n && !s && !e && w)
+                {
+                    cell.cellImage = "RightSingleTile.png"
+                }
+                else if(!n && !s && e && !w)
+                {
+                    cell.cellImage = "LeftSingleTile.png"
+                }
+                else if(!n && !s && e && w)
+                {
+                    cell.cellImage = "HorizontalSingleTile.png"
+                }
+                else if(!n && s && !e && !w)
+                {
+                    cell.cellImage = "BackSingleTile.png"
+                }
+                else if(!n && s && !e && w)
+                {
+                    cell.cellImage = "BackRightCorner.png"
+                }
+                else if(!n && s && e && !w)
+                {
+                    cell.cellImage = "BackLeftCorner.png"
+                }
+                else if(!n && s && e && w)
+                {
+                    cell.cellImage = "BackWall.png"
+                }
+                else if(n && !s && !e && !w)
+                {
+                    cell.cellImage = "FrontSingleTile.png"
+                }
+                else if(n && !s && !e && w)
+                {
+                    cell.cellImage = "FrontRightCorner.png"
+                }
+                else if(n && !s && e && !w)
+                {
+                    cell.cellImage = "FrontLeftCorner.png"
+                }
+                else if(n && !s && e && w)
+                {
+                    cell.cellImage = "FrontWall.png"
+                }
+                else if(n && s && !e && !w)
+                {
+                    cell.cellImage = "VerticalSingleTile.png"
+                }
+                else if(n && s && !e && w)
+                {
+                    cell.cellImage = "RightWall.png"
+                }
+                else if(n && s && e && !w)
+                {
+                    cell.cellImage = "LeftWall.png"
+                }
+                else if(n && s && e && w)
+                {
+                    cell.cellImage = "UnexcavatedTile.png"
+                }
+            }
+        }
     }
     
     func setDungeonWidth(dungeonWidth : Int, appendToFront : Bool)
@@ -298,47 +412,53 @@ class Dungeon
         {
             if appendToFront
             {
-                tiles[index] = Array(count: dungeonWidth - width, repeatedValue: Tile(nXCells: numXCells, nYCells: numYCells)) + tiles[index]
+                tiles[index] = Array(count: dungeonWidth - width, repeatedValue: Tile(nXCells: numXCells, nYCells: numYCells, gridLeft: gridLeft, gridBottom: gridBottom, cellSize: cellSize!)) + tiles[index]
             }
             else
             {
-                tiles[index] = tiles[index] + Array(count: dungeonWidth - width, repeatedValue: Tile(nXCells: numXCells, nYCells: numYCells))
+                tiles[index] = tiles[index] + Array(count: dungeonWidth - width, repeatedValue: Tile(nXCells: numXCells, nYCells: numYCells, gridLeft: gridLeft, gridBottom: gridBottom, cellSize: cellSize!))
             }
         }
         
         width = dungeonWidth
     }
     
-    func getExitsOnWallForTile(tile : Tile, direction : Direction) -> [CGPoint]
+    func getExitsOnWallForTile(tile : Tile, direction : Direction) -> [(Int, Int)]
     {
-        var exits : [CGPoint] = [CGPoint]()
+        var exits : [(Int, Int)] = [(Int, Int)]()
         
-        for exit in tile.exitPositions
+        for exitCell in tile.exitCells
         {
+            var exit : (Int, Int) = exitCell.index
+            
             switch direction
             {
                 case .North:
-                    if Int(exit.y) == numYCells - 1
+                    if exit.1 == numYCells - 1
                     {
-                        exits.append(CGPoint(x: exit.x, y: 0))
+                        //exits.append((exit.0, 0))
+                        exits += [(exit.0, 0)]
                     }
                     
                 case .South:
-                    if Int(exit.y) == 0
+                    if exit.1 == 0
                     {
-                        exits.append(CGPoint(x: exit.x, y: CGFloat(numYCells - 1)))
+                        //exits.append(CGPoint(x: exit.x, y: CGFloat(numYCells - 1)))
+                        exits += [(exit.0, numYCells - 1)]
                     }
                     
                 case .East:
-                    if Int(exit.x) == numXCells - 1
+                    if exit.0 == numXCells - 1
                     {
-                        exits.append(CGPoint(x: 0, y: exit.y))
+                        //exits.append(CGPoint(x: 0, y: exit.y))
+                        exits += [(0, exit.1)]
                     }
                     
                 case .West:
-                    if Int(exit.x) == 0
+                    if exit.0 == 0
                     {
-                        exits.append(CGPoint(x: CGFloat(numXCells - 1), y: exit.y))
+                        //exits.append(CGPoint(x: CGFloat(numXCells - 1), y: exit.y))
+                        exits += [(numXCells - 1, exit.1)]
                     }
                 
                 default:
@@ -349,7 +469,55 @@ class Dungeon
         return exits
     }
     
-    func rollDoorLocationForDirection(dir : Direction) -> CGPoint
+    func getExitsCellsOnWallForTile(tile : Tile, direction : Direction) -> [Cell]
+    {
+        var cells : [Cell] = [Cell]()
+        
+        for exitCell in tile.exitCells
+        {
+            switch direction
+            {
+                case .North:
+                    if exitCell.index.1 == numYCells - 1
+                    {
+                        //exits.append((exit.0, 0))
+                        //exits += [(exit.0, 0)]
+                        cells.append(tile.cells[0][exitCell.index.0])
+                    }
+                    
+                case .South:
+                    if exitCell.index.1 == 0
+                    {
+                        //exits.append(CGPoint(x: exit.x, y: CGFloat(numYCells - 1)))
+                        //exits += [(exit.0, numYCells - 1)]
+                        cells.append(tile.cells[numYCells - 1][exitCell.index.0])
+                    }
+                    
+                case .East:
+                    if exitCell.index.0 == numXCells - 1
+                    {
+                        //exits.append(CGPoint(x: 0, y: exit.y))
+                        //exits += [(0, exit.1)]
+                        cells.append(tile.cells[exitCell.index.1][0])
+                    }
+                    
+                case .West:
+                    if exitCell.index.0 == 0
+                    {
+                        //exits.append(CGPoint(x: CGFloat(numXCells - 1), y: exit.y))
+                        //exits += [(numXCells - 1, exit.1)]
+                        cells.append(tile.cells[exitCell.index.1][numXCells - 1])
+                    }
+                    
+                default:
+                    debugPrintln("There will never be a diagonal exit")
+            }
+        }
+        
+        return cells
+    }
+    
+    func rollDoorLocationForDirection(dir : Direction) -> (Int, Int)
     {
         var roll : Int!
         
@@ -359,11 +527,11 @@ class Dungeon
             
             if dir == .South
             {
-                return CGPoint(x: roll, y: 0)
+                return (roll, 0)
             }
             else
             {
-                return CGPoint(x: roll, y: numYCells - 1)
+                return (roll, numYCells - 1)
             }
         }
         else
@@ -372,11 +540,11 @@ class Dungeon
             
             if dir == .West
             {
-                return CGPoint(x: 0, y: roll)
+                return (0, roll)
             }
             else
             {
-                return CGPoint(x: numXCells - 1, y: roll)
+                return (numXCells - 1, roll)
             }
         }
     }
@@ -439,51 +607,31 @@ class Dungeon
         }
     }
     
-    func getNeighborCellPositionForPositionAndDirection(position : CGPoint, exitDirection : Direction) -> CGPoint
+    class func getNeighborCellindex(index : (Int, Int), exitDirection : Direction) -> (Int, Int)
     {
         switch exitDirection
         {
             case .North:
-                return CGPoint(x: position.x, y: position.y + 1)
+                return (index.0, index.1 + 1)
                 
             case .South:
-                return CGPoint(x: position.x, y: position.y - 1)
+                return (index.0, index.1 - 1)
                 
             case .East:
-                return CGPoint(x: position.x + 1, y: position.y)
+                return (index.0 + 1, index.1)
                 
             case .West:
-                return CGPoint(x: position.x - 1, y: position.y)
+                return (index.0 - 1, index.1)
                 
             default:
-                return CGPoint(x: position.x, y: position.y)
-        }
-    }
-    
-    func getNeighborCellForCellAndDirection(cell : Cell, direction : Direction) -> Cell
-    {
-        switch direction
-        {
-            case .North:
-                return CGPoint(x: position.x, y: position.y + 1)
-                
-            case .South:
-                return CGPoint(x: position.x, y: position.y - 1)
-                
-            case .East:
-                return CGPoint(x: position.x + 1, y: position.y)
-                
-            case .West:
-                return CGPoint(x: position.x - 1, y: position.y)
-                
-            default:
-                return CGPoint(x: position.x, y: position.y)
+                return (index.0, index.1)
         }
     }
     
     func getCurrentTile() -> Tile
     {
-        return tiles[Int(currentTilePos.y)][Int(currentTilePos.x)]
+        //return tiles[Int(currentTilePos.y)][Int(currentTilePos.x)]
+        return tiles[currentTilePos.1][currentTilePos.0]
     }
     
     func screenLocationForIndex(index : CGPoint) -> CGPoint
@@ -496,7 +644,23 @@ class Dungeon
         return CGPoint(x: numXCells - 1 - Int(location.x - gridLeft) / cellSize!, y: numYCells - 1 - Int(location.y - gridBottom) / cellSize!)
     }
     
-    func cellTypeAtScreenLocation(location : CGPoint) -> Tile.CellType
+    func cellAtScreenLocation(location : CGPoint) -> Cell?
+    {
+        var currentTile : Tile = getCurrentTile()
+        
+        var xIndex = Int(location.x - gridLeft) / cellSize!
+        var yIndex = Int(location.y - gridBottom) / cellSize!
+        
+        //If it's not a valid cell position then call it a wall
+        if xIndex < 0 || xIndex > numXCells - 1 || yIndex < 0 || yIndex > numYCells - 1
+        {
+            return nil
+        }
+        
+        return currentTile.cells[yIndex][xIndex]
+    }
+    
+    func cellTypeAtScreenLocation(location : CGPoint) -> Cell.CellType
     {
         var currentTile : Tile = getCurrentTile()
 
@@ -509,7 +673,7 @@ class Dungeon
             return .Wall
         }
         
-        return currentTile.cells[yIndex][xIndex]
+        return currentTile.cells[yIndex][xIndex].cellType
     }
     
     func wallDirectionOfEntranceOrExitAtPosition(position : CGPoint) -> Direction
@@ -537,8 +701,8 @@ class Dungeon
         }
     }
     
-    func isValidCell(cell : CGPoint) -> Bool
+    func isValidCell(cell : (Int, Int)) -> Bool
     {
-        return (Int(cell.x) >= 1 && Int(cell.x) < numXCells - 1) && (Int(cell.y) >= 1 && Int(cell.y) < numYCells - 1)
+        return (cell.0 >= 1 && cell.0 < numXCells - 1) && (cell.1 >= 1 && cell.1 < numYCells - 1)
     }
 }

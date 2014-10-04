@@ -48,6 +48,12 @@ class Player
     var hands : EquippableItem!
     var wrists : EquippableItem!
     var feet : EquippableItem!
+    var waist : EquippableItem!
+    var torso : EquippableItem!
+    var eyes : EquippableItem!
+    var ring1 : EquippableItem!
+    var ring2 : EquippableItem!
+    var neck : EquippableItem!
     var ammo : EquippableItem!
     var platinum : Int!
     var gold : Int!
@@ -68,8 +74,8 @@ class Player
     var gender : String!
     var height : String!
     var weight : Int!
-    var eyes : String!
-    var hair : String!
+    var eyeColor : String!
+    var hairColor : String!
     
     
     
@@ -123,8 +129,8 @@ class Player
         gender = "Male"
         height = "5\" 11'"
         weight = 120
-        hair = "Grey"
-        eyes = "Grey"
+        hairColor = "Grey"
+        eyeColor = "Grey"
         
         rightHand = EquippableItem(theSlot: .None, theSize: .Medium, damDie: .d3, dieQnty: 1, theWeapCat: .Simple, theWeaponType: .Unarmed, theDamType: .Bludgeoning, theArmType: .None)
         
@@ -232,6 +238,28 @@ class Player
             case .Feet:
             
                 feet = item
+            
+            case .Eyes:
+            
+                eyes = item
+            
+            case .Neck:
+            
+                neck = item
+            
+            case .Torso:
+            
+                torso = item
+            
+            case .Waist:
+            
+                waist = item
+            
+            case .Ring:
+            
+                ring1 = item
+            
+                //Add in ring 2 stuff
             
             case .None:
             

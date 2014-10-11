@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CharacterEquipmentViewController" customModule="EndlessDungeon" customModuleProvider="target">
+            <connections>
+                <outlet property="ammoSlot" destination="Oyk-y7-Pc6" id="IBo-6h-DXx"/>
+                <outlet property="bodySlot" destination="ISB-XX-FEs" id="jC1-Il-0yt"/>
+                <outlet property="eyeSlot" destination="tAe-md-W3X" id="nTs-Us-KkQ"/>
+                <outlet property="feetSlot" destination="qg7-CR-IPf" id="9eF-b9-IoK"/>
+                <outlet property="handSlot" destination="Qu1-k2-qc3" id="wWP-bz-3GW"/>
+                <outlet property="headSlot" destination="OBG-kD-gPe" id="Bdq-Sw-01G"/>
+                <outlet property="itemLabel" destination="4hJ-pF-gcH" id="Tqq-EP-YAR"/>
+                <outlet property="itemView" destination="2GG-Ro-fwN" id="hVF-uI-ylQ"/>
+                <outlet property="leftHandSlot" destination="O2z-Fh-zFg" id="jMg-ad-ms4"/>
+                <outlet property="neckSlot" destination="amd-1h-ViB" id="0AS-yx-fUh"/>
+                <outlet property="rightHandSlot" destination="EW3-x0-oqB" id="xg1-g9-yJ2"/>
+                <outlet property="ring1Slot" destination="SIg-tX-qG4" id="8In-Kv-R4L"/>
+                <outlet property="ring2Slot" destination="RDu-8n-cIb" id="ZYu-4h-OUV"/>
+                <outlet property="shoulderSlot" destination="r5f-NY-kfr" id="45l-SF-7aX"/>
+                <outlet property="torsoSlot" destination="LTi-jv-zWv" id="jFP-82-qiO"/>
+                <outlet property="view" destination="iN0-l3-epB" id="WiX-i1-RIl"/>
+                <outlet property="waistSlot" destination="c0l-1f-4Mz" id="2ya-HG-rBD"/>
+                <outlet property="wristSlot" destination="jDR-Uc-Z8E" id="Onn-bh-cK9"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Column.png" translatesAutoresizingMaskIntoConstraints="NO" id="OBG-kD-gPe" userLabel="Head">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <variation key="heightClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="94" y="8" width="79" height="74"/>
+                    </variation>
+                </imageView>
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Column.png" translatesAutoresizingMaskIntoConstraints="NO" id="amd-1h-ViB" userLabel="Neck">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <variation key="heightClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="207" y="8" width="39" height="39"/>
+                    </variation>
+                </imageView>
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Column.png" translatesAutoresizingMaskIntoConstraints="NO" id="RDu-8n-cIb" userLabel="Neck">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <variation key="heightClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="230" y="58" width="28" height="28"/>
+                    </variation>
+                </imageView>
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Column.png" translatesAutoresizingMaskIntoConstraints="NO" id="tAe-md-W3X" userLabel="Eyes">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <variation key="heightClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="12" y="8" width="69" height="32"/>
+                    </variation>
+                </imageView>
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Column.png" translatesAutoresizingMaskIntoConstraints="NO" id="O2z-Fh-zFg" userLabel="Left Hand">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <variation key="heightClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="8" y="94" width="46" height="158"/>
+                    </variation>
+                </imageView>
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Column.png" translatesAutoresizingMaskIntoConstraints="NO" id="EW3-x0-oqB" userLabel="Right Hand">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <variation key="heightClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="212" y="94" width="46" height="158"/>
+                    </variation>
+                </imageView>
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Column.png" translatesAutoresizingMaskIntoConstraints="NO" id="jDR-Uc-Z8E" userLabel="Right Hand">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <variation key="heightClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="212" y="268" width="46" height="85"/>
+                    </variation>
+                </imageView>
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Column.png" translatesAutoresizingMaskIntoConstraints="NO" id="Qu1-k2-qc3" userLabel="Right Hand">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <variation key="heightClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="8" y="268" width="46" height="85"/>
+                    </variation>
+                </imageView>
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Column.png" translatesAutoresizingMaskIntoConstraints="NO" id="ISB-XX-FEs">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <variation key="heightClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="137" y="94" width="67" height="128"/>
+                    </variation>
+                </imageView>
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Column.png" translatesAutoresizingMaskIntoConstraints="NO" id="LTi-jv-zWv">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <variation key="heightClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="62" y="153" width="67" height="69"/>
+                    </variation>
+                </imageView>
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Column.png" translatesAutoresizingMaskIntoConstraints="NO" id="r5f-NY-kfr">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <variation key="heightClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="62" y="94" width="67" height="51"/>
+                    </variation>
+                </imageView>
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Column.png" translatesAutoresizingMaskIntoConstraints="NO" id="c0l-1f-4Mz">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <variation key="heightClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="62" y="230" width="142" height="51"/>
+                    </variation>
+                </imageView>
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Column.png" translatesAutoresizingMaskIntoConstraints="NO" id="qg7-CR-IPf">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <variation key="heightClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="62" y="289" width="142" height="85"/>
+                    </variation>
+                </imageView>
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Column.png" translatesAutoresizingMaskIntoConstraints="NO" id="SIg-tX-qG4" userLabel="Neck">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <variation key="heightClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="194" y="58" width="28" height="28"/>
+                    </variation>
+                </imageView>
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Column.png" translatesAutoresizingMaskIntoConstraints="NO" id="Oyk-y7-Pc6" userLabel="Eyes">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <variation key="heightClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="12" y="48" width="69" height="32"/>
+                    </variation>
+                </imageView>
+                <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="2GG-Ro-fwN">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Tf2-ul-L0s">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="7" minY="7" maxX="7" maxY="7"/>
+                    </collectionViewFlowLayout>
+                    <variation key="heightClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="266" y="22" width="326" height="235"/>
+                    </variation>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="4Rc-vw-O0R"/>
+                        <outlet property="delegate" destination="-1" id="Uie-6w-Gnw"/>
+                    </connections>
+                </collectionView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4hJ-pF-gcH">
+                    <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                    <variation key="heightClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="345" y="303" width="169" height="38"/>
+                    </variation>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <variation key="default">
+                <mask key="subviews">
+                    <exclude reference="OBG-kD-gPe"/>
+                    <exclude reference="amd-1h-ViB"/>
+                    <exclude reference="RDu-8n-cIb"/>
+                    <exclude reference="tAe-md-W3X"/>
+                    <exclude reference="O2z-Fh-zFg"/>
+                    <exclude reference="EW3-x0-oqB"/>
+                    <exclude reference="jDR-Uc-Z8E"/>
+                    <exclude reference="Qu1-k2-qc3"/>
+                    <exclude reference="ISB-XX-FEs"/>
+                    <exclude reference="LTi-jv-zWv"/>
+                    <exclude reference="r5f-NY-kfr"/>
+                    <exclude reference="c0l-1f-4Mz"/>
+                    <exclude reference="qg7-CR-IPf"/>
+                    <exclude reference="SIg-tX-qG4"/>
+                    <exclude reference="Oyk-y7-Pc6"/>
+                    <exclude reference="2GG-Ro-fwN"/>
+                    <exclude reference="4hJ-pF-gcH"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=compact">
+                <mask key="subviews">
+                    <include reference="OBG-kD-gPe"/>
+                    <include reference="amd-1h-ViB"/>
+                    <include reference="RDu-8n-cIb"/>
+                    <include reference="tAe-md-W3X"/>
+                    <include reference="O2z-Fh-zFg"/>
+                    <include reference="EW3-x0-oqB"/>
+                    <include reference="jDR-Uc-Z8E"/>
+                    <include reference="Qu1-k2-qc3"/>
+                    <include reference="ISB-XX-FEs"/>
+                    <include reference="LTi-jv-zWv"/>
+                    <include reference="r5f-NY-kfr"/>
+                    <include reference="c0l-1f-4Mz"/>
+                    <include reference="qg7-CR-IPf"/>
+                    <include reference="SIg-tX-qG4"/>
+                    <include reference="Oyk-y7-Pc6"/>
+                    <include reference="2GG-Ro-fwN"/>
+                    <include reference="4hJ-pF-gcH"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="124" y="164"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Column.png" width="68" height="68"/>
+    </resources>
+</document>

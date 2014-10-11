@@ -11,17 +11,27 @@ import SpriteKit
 
 class Dungeon
 {
+    var player : Player!
+    var enemies : [Player]?
+    
     var tiles = [[Tile]]()  //New tiles are added to this as they are visited
-    var cellSize : Int?
+    var cellSize : Int!
     var width : Int = 1
     var entranceTile : Tile!
     
     var gridLeft : CGFloat!
     var gridBottom : CGFloat!
-    var currentTilePos : (Int, Int)
+    var frame : CGRect!
+    var currentTilePos : (Int, Int)!
     
     var numXCells : Int!
     var numYCells : Int!
+    
+    var created : Bool = false
+    
+    //Views
+    var containerViewController : ContainerViewController!
+    var characterEquipmentViewController : CharacterEquipmentViewController!
 
     enum Direction
     {
@@ -35,7 +45,23 @@ class Dungeon
         case Southwest
     }
     
-    init(frameRect : CGRect!, cSize : Int)
+    //Create singleton
+    class var sharedInstance : Dungeon
+    {
+        struct Static
+        {
+            static let instance : Dungeon = Dungeon()
+        }
+        
+        return Static.instance
+    }
+    //
+    
+    init()
+    {
+    }
+        
+    func createDungeon(frameRect : CGRect!, cSize : Int) -> Dungeon
     {
         cellSize = cSize
         
@@ -43,14 +69,16 @@ class Dungeon
         var screenWidth = max(frameRect.width, frameRect.height)
         var screenHeight = min(frameRect.width, frameRect.height)
         
+        frame = frameRect
+        
         //Calculate and Set dungeon screen bounds
-        gridLeft = (screenWidth % CGFloat(cellSize!)) / 2
-        gridBottom = (screenHeight % CGFloat(cellSize!)) / 2
+        gridLeft = (screenWidth % CGFloat(cellSize)) / 2
+        gridBottom = (screenHeight % CGFloat(cellSize)) / 2
         
-        numXCells = Int(screenWidth / CGFloat(cellSize!))
-        numYCells = Int(screenHeight / CGFloat(cellSize!))
+        numXCells = Int(screenWidth / CGFloat(cellSize))
+        numYCells = Int(screenHeight / CGFloat(cellSize))
         
-        entranceTile = Tile(nXCells: numXCells, nYCells: numYCells, gridLeft: gridLeft, gridBottom: gridBottom, cellSize: cellSize!)
+        entranceTile = Tile(nXCells: numXCells, nYCells: numYCells, gridLeft: gridLeft, gridBottom: gridBottom, cellSize: cellSize)
         
         //Populate entrance tile
         tiles.append(Array(count: 1, repeatedValue: entranceTile))
@@ -60,6 +88,14 @@ class Dungeon
         generateEntrance()
         
         tiles[currentTilePos.1][currentTilePos.0] = entranceTile
+        
+        //Create view
+        containerViewController = ContainerViewController()
+        characterEquipmentViewController = CharacterEquipmentViewController()
+        
+        created = true
+        
+        return self
     }
     
     func drawTile(x : Int, y : Int) -> SKSpriteNode
@@ -69,7 +105,7 @@ class Dungeon
             tiles[y][x] = generateRoomForTile(x, tileY: y)
         }
         
-        return tiles[y][x].draw(gridLeft, gridBottom: gridBottom, cellSize: CGFloat(cellSize!))
+        return tiles[y][x].draw(gridLeft, gridBottom: gridBottom, cellSize: CGFloat(cellSize))
     }
     
     func transitionToTileInDirection(direction : Direction) -> Tile
@@ -84,7 +120,7 @@ class Dungeon
                 if currentTilePos.1 == 0
                 {
                     //Extend array
-                    tiles.insert(Array(count: width, repeatedValue: Tile(nXCells: numXCells, nYCells: numYCells, gridLeft: gridLeft, gridBottom: gridBottom, cellSize: cellSize!)), atIndex: 0)
+                    tiles.insert(Array(count: width, repeatedValue: Tile(nXCells: numXCells, nYCells: numYCells, gridLeft: gridLeft, gridBottom: gridBottom, cellSize: cellSize)), atIndex: 0)
                     nextTile = generateRoomForTile(currentTilePos.0, tileY: 0)
                     tiles[currentTilePos.1][currentTilePos.0] = nextTile
                 }
@@ -100,7 +136,7 @@ class Dungeon
                 if currentTilePos.1 == tiles.count - 1
                 {
                     //Extend array
-                    tiles.append(Array(count: width, repeatedValue: Tile(nXCells: numXCells, nYCells: numYCells, gridLeft: gridLeft, gridBottom: gridBottom, cellSize: cellSize!)))
+                    tiles.append(Array(count: width, repeatedValue: Tile(nXCells: numXCells, nYCells: numYCells, gridLeft: gridLeft, gridBottom: gridBottom, cellSize: cellSize)))
                     nextTile = generateRoomForTile(currentTilePos.0, tileY: currentTilePos.1 + 1)
                     tiles[currentTilePos.1 + 1][currentTilePos.0] = nextTile
                 }
@@ -143,7 +179,7 @@ class Dungeon
                 }
             
             default:
-                return Tile(nXCells: numXCells, nYCells: numYCells, gridLeft: gridLeft, gridBottom: gridBottom, cellSize: cellSize!)
+                return Tile(nXCells: numXCells, nYCells: numYCells, gridLeft: gridLeft, gridBottom: gridBottom, cellSize: cellSize)
         }
         
         nextTile.tileSprite = drawTile(currentTilePos.0, y: currentTilePos.1)
@@ -210,7 +246,7 @@ class Dungeon
 
     func generateRoomForTile(tileX : Int, tileY : Int) -> Tile
     {
-        var nextTile : Tile = Tile(nXCells: numXCells, nYCells: numYCells, gridLeft: gridLeft, gridBottom: gridBottom, cellSize: cellSize!)
+        var nextTile : Tile = Tile(nXCells: numXCells, nYCells: numYCells, gridLeft: gridLeft, gridBottom: gridBottom, cellSize: cellSize)
         var hasNorthExits : Bool = false
         var hasSouthExits : Bool = false
         var hasEastExits : Bool = false
@@ -412,11 +448,11 @@ class Dungeon
         {
             if appendToFront
             {
-                tiles[index] = Array(count: dungeonWidth - width, repeatedValue: Tile(nXCells: numXCells, nYCells: numYCells, gridLeft: gridLeft, gridBottom: gridBottom, cellSize: cellSize!)) + tiles[index]
+                tiles[index] = Array(count: dungeonWidth - width, repeatedValue: Tile(nXCells: numXCells, nYCells: numYCells, gridLeft: gridLeft, gridBottom: gridBottom, cellSize: cellSize)) + tiles[index]
             }
             else
             {
-                tiles[index] = tiles[index] + Array(count: dungeonWidth - width, repeatedValue: Tile(nXCells: numXCells, nYCells: numYCells, gridLeft: gridLeft, gridBottom: gridBottom, cellSize: cellSize!))
+                tiles[index] = tiles[index] + Array(count: dungeonWidth - width, repeatedValue: Tile(nXCells: numXCells, nYCells: numYCells, gridLeft: gridLeft, gridBottom: gridBottom, cellSize: cellSize))
             }
         }
         
@@ -585,25 +621,25 @@ class Dungeon
         if Int(locationIndex.x) == numXCells - 1
         {
             //return east wall
-            return CGPoint(x: CGFloat(gridLeft + CGFloat(cellSize!) * CGFloat(numXCells - (offGridLocation ? 0 : 1))), y: CGFloat(location.y))
+            return CGPoint(x: CGFloat(gridLeft + CGFloat(cellSize) * CGFloat(numXCells - (offGridLocation ? 0 : 1))), y: CGFloat(location.y))
         }
         //if east wall
         else if locationIndex.x == 0
         {
             //return west wall
-            return CGPoint(x: CGFloat(gridLeft - CGFloat(cellSize!) * (offGridLocation ? 1 : 0)), y: CGFloat(location.y))
+            return CGPoint(x: CGFloat(gridLeft - CGFloat(cellSize) * (offGridLocation ? 1 : 0)), y: CGFloat(location.y))
         }
         //if north wall
         else if locationIndex.y == 0
         {
             //return south wall
-            return CGPoint(x: CGFloat(location.x), y: CGFloat(gridBottom - CGFloat(cellSize!) * (offGridLocation ? 1 : 0)))
+            return CGPoint(x: CGFloat(location.x), y: CGFloat(gridBottom - CGFloat(cellSize) * (offGridLocation ? 1 : 0)))
         }
         //if south wall
         else
         {
             //return north wall
-            return CGPoint(x: CGFloat(location.x), y: CGFloat(gridBottom + CGFloat(cellSize!) * CGFloat(numYCells - (offGridLocation ? 0 : 1))))
+            return CGPoint(x: CGFloat(location.x), y: CGFloat(gridBottom + CGFloat(cellSize) * CGFloat(numYCells - (offGridLocation ? 0 : 1))))
         }
     }
     
@@ -636,27 +672,27 @@ class Dungeon
     
     func screenLocationForIndex(index : CGPoint) -> CGPoint
     {
-        return CGPoint(x: (index.x * CGFloat(cellSize!)) + gridLeft, y: (index.y * CGFloat(cellSize!)) + gridBottom)
+        return CGPoint(x: (index.x * CGFloat(cellSize)) + gridLeft, y: (index.y * CGFloat(cellSize)) + gridBottom)
     }
     
     func cellIndexAtScreenLocation(location : CGPoint) -> CGPoint
     {
-        return CGPoint(x: numXCells - 1 - Int(location.x - gridLeft) / cellSize!, y: numYCells - 1 - Int(location.y - gridBottom) / cellSize!)
+        return CGPoint(x: numXCells - 1 - Int(location.x - gridLeft) / cellSize, y: numYCells - 1 - Int(location.y - gridBottom) / cellSize)
     }
     
     func cellAtScreenLocation(location : CGPoint) -> Cell?
     {
         var currentTile : Tile = getCurrentTile()
         
-        var xIndex = Int(location.x - gridLeft) / cellSize!
-        var yIndex = Int(location.y - gridBottom) / cellSize!
-        
+        var xIndex = Int(location.x - gridLeft) / cellSize
+        var yIndex = Int(location.y - gridBottom) / cellSize
+
         //If it's not a valid cell position then call it a wall
         if xIndex < 0 || xIndex > numXCells - 1 || yIndex < 0 || yIndex > numYCells - 1
         {
             return nil
         }
-        
+
         return currentTile.cells[yIndex][xIndex]
     }
     
@@ -664,8 +700,8 @@ class Dungeon
     {
         var currentTile : Tile = getCurrentTile()
 
-        var xIndex = Int(location.x - gridLeft) / cellSize!
-        var yIndex = Int(location.y - gridBottom) / cellSize!
+        var xIndex = Int(location.x - gridLeft) / cellSize
+        var yIndex = Int(location.y - gridBottom) / cellSize
 
         //If it's not a valid cell position then call it a wall
         if xIndex < 0 || xIndex > numXCells - 1 || yIndex < 0 || yIndex > numYCells - 1
@@ -676,12 +712,19 @@ class Dungeon
         return currentTile.cells[yIndex][xIndex].cellType
     }
     
+    func distanceBetweenCells(fromCell : Cell, toCell : Cell) -> Int
+    {
+        //debugPrintln(String(toCell.index.0 - fromCell.index.0) + "    " + String(toCell.index.1 - fromCell.index.1))
+        //return Int(sqrt(pow(CGFloat(toCell.index.0 - fromCell.index.0), CGFloat(2)) + pow(CGFloat(toCell.index.1 - fromCell.index.1), CGFloat(2))))
+        return max(abs(toCell.index.0 - fromCell.index.0), abs(toCell.index.1 - fromCell.index.1))
+    }
+    
     func wallDirectionOfEntranceOrExitAtPosition(position : CGPoint) -> Direction
     {
         var currentTile : Tile = getCurrentTile()
         
-        var xIndex = Int(position.x - gridLeft) / cellSize!
-        var yIndex = Int(position.y - gridBottom) / cellSize!
+        var xIndex = Int(position.x - gridLeft) / cellSize
+        var yIndex = Int(position.y - gridBottom) / cellSize
         
         if xIndex == 0
         {
@@ -704,5 +747,182 @@ class Dungeon
     func isValidCell(cell : (Int, Int)) -> Bool
     {
         return (cell.0 >= 1 && cell.0 < numXCells - 1) && (cell.1 >= 1 && cell.1 < numYCells - 1)
+    }
+    
+    //From DungeonRPG
+    func movePlayerInDirection(player : Player, direction : Direction) -> SKSpriteNode?
+    {
+        var proposedPosition : CGPoint!
+        
+        switch direction
+            {
+        case .North:
+            proposedPosition = CGPoint(x: player.sprite.position.x, y: player.sprite.position.y + CGFloat(cellSize))
+            
+        case .South:
+            proposedPosition = CGPoint(x: player.sprite.position.x, y: player.sprite.position.y - CGFloat(cellSize))
+            
+        case .East:
+            proposedPosition = CGPoint(x: player.sprite.position.x + CGFloat(cellSize), y: player.sprite.position.y)
+            
+        case .West:
+            proposedPosition = CGPoint(x: player.sprite.position.x - CGFloat(cellSize), y: player.sprite.position.y)
+            
+        case .Northeast:
+            proposedPosition = CGPoint(x: player.sprite.position.x + CGFloat(cellSize), y: player.sprite.position.y + CGFloat(cellSize))
+            
+        case .Northwest:
+            proposedPosition = CGPoint(x: player.sprite.position.x - CGFloat(cellSize), y: player.sprite.position.y + CGFloat(cellSize))
+            
+        case .Southeast:
+            proposedPosition = CGPoint(x: player.sprite.position.x + CGFloat(cellSize), y: player.sprite.position.y - CGFloat(cellSize))
+            
+        case .Southwest:
+            proposedPosition = CGPoint(x: player.sprite.position.x - CGFloat(cellSize), y: player.sprite.position.y - CGFloat(cellSize))
+        }
+        
+        //var cellType = cellTypeAtScreenLocation(proposedPosition)
+        var thisCell : Cell = cellAtScreenLocation(player.sprite.position)!
+        var nextCell : Cell = cellAtScreenLocation(proposedPosition)!
+        
+        if nextCell.cellType != .Wall
+        {
+            if nextCell.cellType == .Exit
+            {
+                debugPrintln("Travel to next tile")
+                
+                //Change player position so it appears that he is coming from last tile
+                player.sprite.position = getOpposingWallForLocation(proposedPosition, offGridLocation: true)
+                proposedPosition = getOpposingWallForLocation(proposedPosition, offGridLocation: false)
+                nextCell = cellAtScreenLocation(proposedPosition)!
+                
+                //Change proposed position so player ends on door from last tile
+                player.sprite.runAction(SKAction.moveTo(proposedPosition, duration:0.25))
+                
+                var nextTileSprite : SKSpriteNode = transitionToTileInDirection(direction).tileSprite
+                
+                //Modify tracked cell character contents
+                thisCell.characterInCell = nil
+                nextCell.characterInCell = player
+                
+                return nextTileSprite
+            }
+            
+            //Modify tracked cell character contents
+            thisCell.characterInCell = nil
+            nextCell.characterInCell = player
+            
+            player.sprite.runAction(SKAction.moveTo(proposedPosition, duration:0.125))
+        }
+        
+        return nil
+    }
+    
+    func attackCharacter(attacker : Character, defender : Character)
+    {
+        //If within range
+        if(attacker.rightHand.range >= distanceBetweenCells(cellAtScreenLocation(attacker.sprite.position)!, toCell: cellAtScreenLocation(defender.sprite.position)!))
+        {
+            defender.takeDamage(attacker.attackCharacter(defender, weapon: attacker.rightHand))
+        }
+        else
+        {
+        }
+        
+        /*
+        //If attacking with melee
+        if(attacker.rightHand.weaponType != .Ranged)
+        {
+            //If within range
+            if(1 >= distanceBetweenCells(cellAtScreenLocation(attacker.sprite.position)!, toCell: cellAtScreenLocation(defender.sprite.position)!))
+            {
+                defender.takeDamage(attacker.attackCharacter(defender, weapon: attacker.rightHand))
+            }
+            else
+            {
+                
+            }
+        }
+        */
+    }
+    
+    func openOpenable(theOpenable : Openable)
+    {
+        theOpenable.open()
+    }
+    
+    /*
+    func addPlayer(player : Player)
+    {
+        players?.append(player)
+    }
+    */
+    
+    func createEnemyOnCurrentTile() -> NPCharacter
+    {
+        //Roll enemy
+        var enemy : NPCharacter = NPCharacter(playerName: "Kobold")
+        
+        //Find suitable location to spawn enemy
+        var tile : Tile = getCurrentTile()
+        var possibleCells : [Cell] = tile.getCellsOfType(.Empty)
+        var chosenCell : Cell = possibleCells[Int(arc4random_uniform(UInt32(possibleCells.count)))]
+        
+        //draw enemy at random empty cell
+        chosenCell.characterInCell = enemy
+        drawPlayerAtLocation(enemy, location: chosenCell.position)
+        
+        return enemy
+    }
+    
+    func createTreasureChestOnCurrentTile(theFrame : CGRect) -> Container
+    {
+        var chest : Container = Container(numOfItems: 4)
+        
+        //Find suitable location to spawn chest
+        var tile : Tile = getCurrentTile()
+        var possibleCells : [Cell] = tile.getCellsOfType(.Empty)
+        var chosenCell : Cell = possibleCells[Int(arc4random_uniform(UInt32(possibleCells.count)))]
+        
+        //draw chest
+        chosenCell.openableInCell = chest
+        drawChestAtLocation(chest, location: chosenCell.position)
+        
+        return chest
+    }
+    
+    func addPlayerAtLocation(player : Character, location : CGPoint)
+    {
+        //players?.append(player)
+        cellAtScreenLocation(location)?.characterInCell = player
+        drawPlayerAtLocation(player, location: location)
+    }
+    
+    
+    func drawPlayerAtLocation(player : Character, location : CGPoint)
+    {
+        player.sprite = SKSpriteNode()
+        player.sprite.anchorPoint = CGPoint(x: -0.5, y: -0.5)
+        
+        player.sprite.color = UIColor.blueColor()
+        player.sprite.name = player.name
+        
+        player.sprite.size = CGSizeMake(CGFloat(cellSize / 2), CGFloat(cellSize / 2))
+        player.sprite.position = location
+        //player.sprite.zRotation = 45.0
+        player.sprite.zPosition = 1
+    }
+    
+    func drawChestAtLocation(chest : Container, location : CGPoint)
+    {
+        chest.sprite = SKSpriteNode()
+        chest.sprite.anchorPoint = CGPoint(x: -0.5, y: -0.5)
+        
+        chest.sprite.color = UIColor.yellowColor()
+        //chest.sprite.name = player.name
+        
+        chest.sprite.size = CGSizeMake(CGFloat(cellSize / 2), CGFloat(cellSize / 2))
+        chest.sprite.position = location
+        chest.sprite.zPosition = 1
     }
 }

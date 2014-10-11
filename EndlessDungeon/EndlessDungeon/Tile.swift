@@ -14,6 +14,7 @@ class Tile
     var cells : [[Cell]]
     var entranceCell : Cell
     var exitCells : [Cell]
+    var containers : [Container] = []
     var tileSprite : SKSpriteNode = SKSpriteNode()
     var roomGenerated : Bool = false
     
@@ -71,10 +72,34 @@ class Tile
         var sprite = SKSpriteNode(imageNamed: cell.cellImage)
         sprite.name = cell.cellImage.stringByReplacingOccurrencesOfString(".png", withString: "", options: nil, range: nil)
         
+        if(sprite.name == "Column")
+        {
+            sprite.shadowCastBitMask = 1
+            sprite.lightingBitMask = 1
+        }
+        
         sprite.anchorPoint = CGPoint(x: 0, y: 0)
         sprite.size = CGSizeMake(cellSize, cellSize)
         sprite.position = cell.position
         return sprite
+    }
+    
+    func getCellsOfType(type : Cell.CellType) -> [Cell]
+    {
+        var theCells : [Cell] = [Cell]()
+        
+        for x in 0...(numXCells! - 1)
+        {
+            for y in 0...(numYCells! - 1)
+            {
+                if(cells[y][x].cellType == type)
+                {
+                    theCells.append(cells[y][x])
+                }
+            }
+        }
+        
+        return theCells
     }
     
     func getNeighboringCells(cell : Cell, getDiagonals : Bool) -> Dictionary<Dungeon.Direction, Cell>

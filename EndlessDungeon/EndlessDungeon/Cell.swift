@@ -15,6 +15,9 @@ class Cell
     var cellType : CellType
     var cellImage : String
     var position : CGPoint
+    var itemInCell : Item?
+    var characterInCell : Character?
+    var openableInCell : Openable?
     
     enum CellType
     {

@@ -8,11 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4C00929019D2EBB800AB6D38 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C00928F19D2EBB800AB6D38 /* Player.swift */; };
-		4C00929219D2EFAA00AB6D38 /* DungeonRPG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C00929119D2EFAA00AB6D38 /* DungeonRPG.swift */; };
 		4C00929419D513B000AB6D38 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C00929319D513B000AB6D38 /* Cell.swift */; };
 		4C00929619D5A68800AB6D38 /* PlayerEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C00929519D5A68800AB6D38 /* PlayerEnums.swift */; };
 		4C0092A119D5ED1F00AB6D38 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0092A019D5ED1F00AB6D38 /* Item.swift */; };
-		4C0092A319D5EDFF00AB6D38 /* EquippableItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0092A219D5EDFF00AB6D38 /* EquippableItem.swift */; };
 		4C0BBD3819E04EA4009865DB /* BackLeftCorner.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0BBD2719E04EA4009865DB /* BackLeftCorner.png */; };
 		4C0BBD3919E04EA4009865DB /* BackRightCorner.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0BBD2819E04EA4009865DB /* BackRightCorner.png */; };
 		4C0BBD3A19E04EA4009865DB /* BackSingleTile.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0BBD2919E04EA4009865DB /* BackSingleTile.png */; };
@@ -32,6 +30,8 @@
 		4C0BBD4819E04EA4009865DB /* VerticalSingleTile.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0BBD3719E04EA4009865DB /* VerticalSingleTile.png */; };
 		4C1F0BB019CEF799001F336B /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1F0BAF19CEF799001F336B /* Tile.swift */; };
 		4C1F0BB219CF3635001F336B /* Dungeon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1F0BB119CF3635001F336B /* Dungeon.swift */; };
+		4C4A9E7419E410040068EAAB /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A9E7319E410040068EAAB /* Container.swift */; };
+		4C4A9E7A19E439C20068EAAB /* ContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C4A9E7919E439C20068EAAB /* ContainerView.xib */; };
 		4CC399C519CE8FAC00B42FB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC399C419CE8FAC00B42FB7 /* AppDelegate.swift */; };
 		4CC399C719CE8FAC00B42FB7 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4CC399C619CE8FAC00B42FB7 /* GameScene.sks */; };
 		4CC399C919CE8FAC00B42FB7 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC399C819CE8FAC00B42FB7 /* GameScene.swift */; };
@@ -40,6 +40,18 @@
 		4CC399D019CE8FAC00B42FB7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CC399CF19CE8FAC00B42FB7 /* Images.xcassets */; };
 		4CC399D319CE8FAC00B42FB7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CC399D119CE8FAC00B42FB7 /* LaunchScreen.xib */; };
 		4CC399DF19CE8FAC00B42FB7 /* EndlessDungeonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC399DE19CE8FAC00B42FB7 /* EndlessDungeonTests.swift */; };
+		4CCA703F19E587180020DFD6 /* ContainerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CCA703E19E587180020DFD6 /* ContainerCell.xib */; };
+		4CCA704519E6C3640020DFD6 /* WorldObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCA704419E6C3640020DFD6 /* WorldObject.swift */; };
+		4CCA704719E6C38D0020DFD6 /* Openable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCA704619E6C38D0020DFD6 /* Openable.swift */; };
+		4CCA704919E6C4D20020DFD6 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCA704819E6C4D20020DFD6 /* ContainerViewController.swift */; };
+		4CCA704C19E70A790020DFD6 /* Door.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCA704B19E70A790020DFD6 /* Door.swift */; };
+		4CCA704E19E70A9B0020DFD6 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCA704D19E70A9B0020DFD6 /* Character.swift */; };
+		4CCA705019E70ABD0020DFD6 /* NPCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCA704F19E70ABD0020DFD6 /* NPCharacter.swift */; };
+		4CCA705219E710FE0020DFD6 /* CharacterSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCA705119E710FE0020DFD6 /* CharacterSheetViewController.swift */; };
+		4CCA705419E7110A0020DFD6 /* CharacterSheetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CCA705319E7110A0020DFD6 /* CharacterSheetView.xib */; };
+		4CCA705619E712050020DFD6 /* CharacterEquipmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCA705519E712050020DFD6 /* CharacterEquipmentViewController.swift */; };
+		4CCA705819E712110020DFD6 /* CharacterEquipmentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CCA705719E712110020DFD6 /* CharacterEquipmentView.xib */; };
+		4CCA705C19E7752D0020DFD6 /* CharacterInventoryCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CCA705B19E7752D0020DFD6 /* CharacterInventoryCollectionCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,11 +66,9 @@
 
 /* Begin PBXFileReference section */
 		4C00928F19D2EBB800AB6D38 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
-		4C00929119D2EFAA00AB6D38 /* DungeonRPG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DungeonRPG.swift; sourceTree = "<group>"; };
 		4C00929319D513B000AB6D38 /* Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		4C00929519D5A68800AB6D38 /* PlayerEnums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerEnums.swift; sourceTree = "<group>"; };
 		4C0092A019D5ED1F00AB6D38 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
-		4C0092A219D5EDFF00AB6D38 /* EquippableItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EquippableItem.swift; sourceTree = "<group>"; };
 		4C0BBD2719E04EA4009865DB /* BackLeftCorner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BackLeftCorner.png; path = "Tile Images/Wall Tiles/Stone Tiles/BackLeftCorner.png"; sourceTree = "<group>"; };
 		4C0BBD2819E04EA4009865DB /* BackRightCorner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BackRightCorner.png; path = "Tile Images/Wall Tiles/Stone Tiles/BackRightCorner.png"; sourceTree = "<group>"; };
 		4C0BBD2919E04EA4009865DB /* BackSingleTile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BackSingleTile.png; path = "Tile Images/Wall Tiles/Stone Tiles/BackSingleTile.png"; sourceTree = "<group>"; };
@@ -78,6 +88,8 @@
 		4C0BBD3719E04EA4009865DB /* VerticalSingleTile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = VerticalSingleTile.png; path = "Tile Images/Wall Tiles/Stone Tiles/VerticalSingleTile.png"; sourceTree = "<group>"; };
 		4C1F0BAF19CEF799001F336B /* Tile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 		4C1F0BB119CF3635001F336B /* Dungeon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dungeon.swift; sourceTree = "<group>"; };
+		4C4A9E7319E410040068EAAB /* Container.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
+		4C4A9E7919E439C20068EAAB /* ContainerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContainerView.xib; sourceTree = "<group>"; };
 		4CC399BF19CE8FAC00B42FB7 /* EndlessDungeon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EndlessDungeon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CC399C319CE8FAC00B42FB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CC399C419CE8FAC00B42FB7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +102,18 @@
 		4CC399D819CE8FAC00B42FB7 /* EndlessDungeonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EndlessDungeonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CC399DD19CE8FAC00B42FB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CC399DE19CE8FAC00B42FB7 /* EndlessDungeonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndlessDungeonTests.swift; sourceTree = "<group>"; };
+		4CCA703E19E587180020DFD6 /* ContainerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContainerCell.xib; sourceTree = "<group>"; };
+		4CCA704419E6C3640020DFD6 /* WorldObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorldObject.swift; sourceTree = "<group>"; };
+		4CCA704619E6C38D0020DFD6 /* Openable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Openable.swift; sourceTree = "<group>"; };
+		4CCA704819E6C4D20020DFD6 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
+		4CCA704B19E70A790020DFD6 /* Door.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Door.swift; sourceTree = "<group>"; };
+		4CCA704D19E70A9B0020DFD6 /* Character.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
+		4CCA704F19E70ABD0020DFD6 /* NPCharacter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPCharacter.swift; sourceTree = "<group>"; };
+		4CCA705119E710FE0020DFD6 /* CharacterSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterSheetViewController.swift; sourceTree = "<group>"; };
+		4CCA705319E7110A0020DFD6 /* CharacterSheetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CharacterSheetView.xib; sourceTree = "<group>"; };
+		4CCA705519E712050020DFD6 /* CharacterEquipmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterEquipmentViewController.swift; sourceTree = "<group>"; };
+		4CCA705719E712110020DFD6 /* CharacterEquipmentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CharacterEquipmentView.xib; sourceTree = "<group>"; };
+		4CCA705B19E7752D0020DFD6 /* CharacterInventoryCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CharacterInventoryCollectionCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,13 +134,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4C00929719D5ECD900AB6D38 /* Equipment */ = {
+		4C00929719D5ECD900AB6D38 /* World Objects */ = {
 			isa = PBXGroup;
 			children = (
-				4C0092A019D5ED1F00AB6D38 /* Item.swift */,
-				4C0092A219D5EDFF00AB6D38 /* EquippableItem.swift */,
+				4CCA704419E6C3640020DFD6 /* WorldObject.swift */,
+				4CCA704319E6C33A0020DFD6 /* Characters */,
+				4CCA704219E6C3280020DFD6 /* Items */,
+				4CCA704119E6C3190020DFD6 /* Openables */,
 			);
-			name = Equipment;
+			name = "World Objects";
 			sourceTree = "<group>";
 		};
 		4C0BBCE919D984BC009865DB /* Tile Images */ = {
@@ -176,14 +202,12 @@
 				4CC399C619CE8FAC00B42FB7 /* GameScene.sks */,
 				4CC399C819CE8FAC00B42FB7 /* GameScene.swift */,
 				4CC399CA19CE8FAC00B42FB7 /* GameViewController.swift */,
-				4C00929119D2EFAA00AB6D38 /* DungeonRPG.swift */,
 				4C1F0BB119CF3635001F336B /* Dungeon.swift */,
 				4C1F0BAF19CEF799001F336B /* Tile.swift */,
 				4C00929319D513B000AB6D38 /* Cell.swift */,
-				4C00928F19D2EBB800AB6D38 /* Player.swift */,
-				4C00929519D5A68800AB6D38 /* PlayerEnums.swift */,
+				4CCA704019E58BC00020DFD6 /* Container Images */,
 				4C0BBCE919D984BC009865DB /* Tile Images */,
-				4C00929719D5ECD900AB6D38 /* Equipment */,
+				4C00929719D5ECD900AB6D38 /* World Objects */,
 				4CC399CC19CE8FAC00B42FB7 /* Main.storyboard */,
 				4CC399CF19CE8FAC00B42FB7 /* Images.xcassets */,
 				4CC399D119CE8FAC00B42FB7 /* LaunchScreen.xib */,
@@ -215,6 +239,66 @@
 				4CC399DD19CE8FAC00B42FB7 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4CCA704019E58BC00020DFD6 /* Container Images */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Container Images";
+			sourceTree = "<group>";
+		};
+		4CCA704119E6C3190020DFD6 /* Openables */ = {
+			isa = PBXGroup;
+			children = (
+				4CCA704619E6C38D0020DFD6 /* Openable.swift */,
+				4CCA704B19E70A790020DFD6 /* Door.swift */,
+				4CCA704A19E6C5730020DFD6 /* Containers */,
+			);
+			name = Openables;
+			sourceTree = "<group>";
+		};
+		4CCA704219E6C3280020DFD6 /* Items */ = {
+			isa = PBXGroup;
+			children = (
+				4C0092A019D5ED1F00AB6D38 /* Item.swift */,
+			);
+			name = Items;
+			sourceTree = "<group>";
+		};
+		4CCA704319E6C33A0020DFD6 /* Characters */ = {
+			isa = PBXGroup;
+			children = (
+				4C00928F19D2EBB800AB6D38 /* Player.swift */,
+				4C00929519D5A68800AB6D38 /* PlayerEnums.swift */,
+				4CCA704D19E70A9B0020DFD6 /* Character.swift */,
+				4CCA704F19E70ABD0020DFD6 /* NPCharacter.swift */,
+				4CCA705119E710FE0020DFD6 /* CharacterSheetViewController.swift */,
+				4CCA705319E7110A0020DFD6 /* CharacterSheetView.xib */,
+				4CCA705D19E81BB20020DFD6 /* Character Inventory */,
+			);
+			name = Characters;
+			sourceTree = "<group>";
+		};
+		4CCA704A19E6C5730020DFD6 /* Containers */ = {
+			isa = PBXGroup;
+			children = (
+				4C4A9E7919E439C20068EAAB /* ContainerView.xib */,
+				4CCA703E19E587180020DFD6 /* ContainerCell.xib */,
+				4C4A9E7319E410040068EAAB /* Container.swift */,
+				4CCA704819E6C4D20020DFD6 /* ContainerViewController.swift */,
+			);
+			name = Containers;
+			sourceTree = "<group>";
+		};
+		4CCA705D19E81BB20020DFD6 /* Character Inventory */ = {
+			isa = PBXGroup;
+			children = (
+				4CCA705519E712050020DFD6 /* CharacterEquipmentViewController.swift */,
+				4CCA705719E712110020DFD6 /* CharacterEquipmentView.xib */,
+				4CCA705B19E7752D0020DFD6 /* CharacterInventoryCollectionCell.xib */,
+			);
+			name = "Character Inventory";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -297,7 +381,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CCA705C19E7752D0020DFD6 /* CharacterInventoryCollectionCell.xib in Resources */,
 				4C0BBD3F19E04EA4009865DB /* FrontRightCorner.png in Resources */,
+				4CCA705819E712110020DFD6 /* CharacterEquipmentView.xib in Resources */,
 				4C0BBD4519E04EA4009865DB /* RightSingleTile.png in Resources */,
 				4C0BBD4819E04EA4009865DB /* VerticalSingleTile.png in Resources */,
 				4C0BBD4719E04EA4009865DB /* UnexcavatedTile.png in Resources */,
@@ -307,14 +393,17 @@
 				4C0BBD4219E04EA4009865DB /* HorizontalSingleTile.png in Resources */,
 				4CC399D019CE8FAC00B42FB7 /* Images.xcassets in Resources */,
 				4C0BBD3819E04EA4009865DB /* BackLeftCorner.png in Resources */,
+				4C4A9E7A19E439C20068EAAB /* ContainerView.xib in Resources */,
 				4C0BBD3C19E04EA4009865DB /* Column.png in Resources */,
 				4C0BBD3E19E04EA4009865DB /* FrontLeftCorner.png in Resources */,
 				4C0BBD4319E04EA4009865DB /* LeftSingleTile.png in Resources */,
 				4C0BBD4019E04EA4009865DB /* FrontSingleTile.png in Resources */,
 				4C0BBD4419E04EA4009865DB /* LeftWall.png in Resources */,
+				4CCA705419E7110A0020DFD6 /* CharacterSheetView.xib in Resources */,
 				4CC399C719CE8FAC00B42FB7 /* GameScene.sks in Resources */,
 				4C0BBD4619E04EA4009865DB /* RightWall.png in Resources */,
 				4CC399CE19CE8FAC00B42FB7 /* Main.storyboard in Resources */,
+				4CCA703F19E587180020DFD6 /* ContainerCell.xib in Resources */,
 				4C0BBD3919E04EA4009865DB /* BackRightCorner.png in Resources */,
 				4C0BBD4119E04EA4009865DB /* FrontWall.png in Resources */,
 				4C0BBD3B19E04EA4009865DB /* BackWall.png in Resources */,
@@ -335,17 +424,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C00929219D2EFAA00AB6D38 /* DungeonRPG.swift in Sources */,
 				4C00929619D5A68800AB6D38 /* PlayerEnums.swift in Sources */,
+				4CCA705619E712050020DFD6 /* CharacterEquipmentViewController.swift in Sources */,
+				4CCA704919E6C4D20020DFD6 /* ContainerViewController.swift in Sources */,
 				4CC399C919CE8FAC00B42FB7 /* GameScene.swift in Sources */,
 				4CC399CB19CE8FAC00B42FB7 /* GameViewController.swift in Sources */,
 				4C0092A119D5ED1F00AB6D38 /* Item.swift in Sources */,
-				4C0092A319D5EDFF00AB6D38 /* EquippableItem.swift in Sources */,
 				4C1F0BB219CF3635001F336B /* Dungeon.swift in Sources */,
+				4CCA705219E710FE0020DFD6 /* CharacterSheetViewController.swift in Sources */,
 				4CC399C519CE8FAC00B42FB7 /* AppDelegate.swift in Sources */,
+				4CCA705019E70ABD0020DFD6 /* NPCharacter.swift in Sources */,
 				4C00929419D513B000AB6D38 /* Cell.swift in Sources */,
 				4C00929019D2EBB800AB6D38 /* Player.swift in Sources */,
+				4CCA704C19E70A790020DFD6 /* Door.swift in Sources */,
+				4C4A9E7419E410040068EAAB /* Container.swift in Sources */,
+				4CCA704719E6C38D0020DFD6 /* Openable.swift in Sources */,
+				4CCA704E19E70A9B0020DFD6 /* Character.swift in Sources */,
 				4C1F0BB019CEF799001F336B /* Tile.swift in Sources */,
+				4CCA704519E6C3640020DFD6 /* WorldObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="InventoryItemCell" id="mPM-Te-jNC">
+            <rect key="frame" x="0.0" y="0.0" width="144" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="144" height="60"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Column.png" translatesAutoresizingMaskIntoConstraints="NO" id="dwE-2T-xbX">
+                        <rect key="frame" x="0.0" y="0.0" width="144" height="60"/>
+                        <color key="backgroundColor" red="0.0" green="0.61568629740000003" blue="0.85882359740000003" alpha="1" colorSpace="deviceRGB"/>
+                    </imageView>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="dwE-2T-xbX" secondAttribute="trailing" id="31P-4B-EES"/>
+                <constraint firstItem="dwE-2T-xbX" firstAttribute="top" secondItem="mPM-Te-jNC" secondAttribute="top" id="KmB-m1-7Zr"/>
+                <constraint firstItem="dwE-2T-xbX" firstAttribute="leading" secondItem="mPM-Te-jNC" secondAttribute="leading" id="chd-uI-eXR"/>
+                <constraint firstAttribute="bottom" secondItem="dwE-2T-xbX" secondAttribute="bottom" id="gFR-Bq-od5"/>
+            </constraints>
+            <size key="customSize" width="144" height="60"/>
+            <point key="canvasLocation" x="184" y="153"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="Column.png" width="68" height="68"/>
+    </resources>
+</document>

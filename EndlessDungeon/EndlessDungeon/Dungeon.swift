@@ -12,7 +12,7 @@ import SpriteKit
 class Dungeon
 {
     var player : Player!
-    var enemies : [Player]?
+    var enemies : [NPCharacter]?
     
     var tiles = [[Tile]]()  //New tiles are added to this as they are visited
     var cellSize : Int!
@@ -61,7 +61,7 @@ class Dungeon
     {
     }
         
-    func createDungeon(frameRect : CGRect!, cSize : Int) -> Dungeon
+    func createDungeon(frameRect : CGRect!, cSize : Int, thePlayer : Player) -> Dungeon
     {
         cellSize = cSize
         
@@ -92,6 +92,17 @@ class Dungeon
         //Create view
         containerViewController = ContainerViewController()
         characterEquipmentViewController = CharacterEquipmentViewController()
+        
+        //Do player setup
+        player = thePlayer
+        
+        //Add player to dungeon
+        addPlayerAtLocation(player, location: entranceTile.entranceCell.position)
+        //Give player a shortbow
+        player.addItemToInventory(Item.shortBow())
+        player.equipItem(player.inventory.contentsDict[.TwoHanded]![0])
+        player.addItemToInventory(Item.shortSword())
+        //
         
         created = true
         
@@ -821,9 +832,9 @@ class Dungeon
     func attackCharacter(attacker : Character, defender : Character)
     {
         //If within range
-        if(attacker.rightHand.range >= distanceBetweenCells(cellAtScreenLocation(attacker.sprite.position)!, toCell: cellAtScreenLocation(defender.sprite.position)!))
+        if(attacker.rightHand.0.range >= distanceBetweenCells(cellAtScreenLocation(attacker.sprite.position)!, toCell: cellAtScreenLocation(defender.sprite.position)!))
         {
-            defender.takeDamage(attacker.attackCharacter(defender, weapon: attacker.rightHand))
+            defender.takeDamage(attacker.attackCharacter(defender, weapon: attacker.rightHand.0))
         }
         else
         {

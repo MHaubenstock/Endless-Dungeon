@@ -15,8 +15,17 @@ class GameScene: SKScene
     var lightNode : SKLightNode!
     var lastTileSprite : SKSpriteNode!
     
+    //Stuff for running the game
+    var activeCharacter : Character!
+    var usedMinorAction : Bool = false
+    var usedMoveAction : Bool = false
+    var squaresMoved : Int = 0
+    var usedStandardAction : Bool = false
+    //
+    
     override func didMoveToView(view: SKView)
     {
+        //Set up controls
         var swipeRight : UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: Selector("movePlayer:"))
         var swipeLeft : UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: Selector("movePlayer:"))
         var swipeUp : UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: Selector("movePlayer:"))
@@ -35,30 +44,21 @@ class GameScene: SKScene
         self.view?.addGestureRecognizer(swipeDown)
         self.view?.addGestureRecognizer(longTouch)
         self.view?.addGestureRecognizer(pinchGesture)
+        //
         
         //Create dungeon
-        dungeon = Dungeon.sharedInstance.createDungeon(self.view?.frame, cSize: cellSize)
+        dungeon = Dungeon.sharedInstance.createDungeon(self.view?.frame, cSize: cellSize, thePlayer: Player(playerName: "Player 1", level: 1))
         
-        //Add views and hide some
+        //Add views and hide some for later use by the player
         //Container
         self.view?.addSubview(dungeon.containerViewController.view)
         dungeon.containerViewController.view.hidden = true
         //Inventory
         self.view?.addSubview(dungeon.characterEquipmentViewController.view)
         dungeon.characterEquipmentViewController.view.hidden = true
-        
-        
-        //Create player
-        dungeon.player = Player(playerName: "Player1")
+        //
 
-        //Add player to dungeon
-        dungeon.addPlayerAtLocation(dungeon.player, location: dungeon.entranceTile.entranceCell.position)
-        //Give player a shortsword
-        //dungeon.player.equipItem(Item.shortSword())
-        dungeon.player.addItemToInventory(Item.shortBow())
-        dungeon.player.equipItem(dungeon.player.inventory.contentsDict[.TwoHanded]![0])
-        dungeon.player.addItemToInventory(Item.shortSword())
-        
+        activeCharacter = dungeon.player
         
         //Testing some lighting stuff
         //player.sprite.lightingBitMask = 0x00000000
@@ -87,35 +87,8 @@ class GameScene: SKScene
         //dungeon.characterEquipmentViewController.open(dungeon.player)
     }
     
-    /*
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent)
-    {
-        super.touchesBegan(touches, withEvent: event)
-
-        lastTileSprite = dungeon.getCurrentTile().tileSprite
-        
-        for touch : AnyObject in touches
-        {
-            let location = touch.locationInNode(self)
-            let touchedNode = self.nodeAtPoint(location)
-            
-            debugPrintln(dungeon.distanceBetweenCells(dungeon.cellAtScreenLocation(dungeon.player.sprite.position)!, toCell: dungeon.cellAtScreenLocation(location)!))
-            
-            /*
-            if(dungeon.cellTypeAtScreenLocation(touchedNode.position) == Tile.CellType.Exit)
-            {
-                self.removeChildrenInArray([lastTileSprite])
-                
-                self.addChild(dungeon.transitionToTileInDirection(dungeon.wallDirectionOfEntranceOrExitAtPosition(touchedNode.position)).tileSprite)
-            }
-            */
-        }
-    }
-    */
-    
     override func update(currentTime: CFTimeInterval)
     {
-
     }
     
     func movePlayer(gestureInfo : UISwipeGestureRecognizer)
@@ -151,6 +124,42 @@ class GameScene: SKScene
             lastTileSprite = nextTileSprite
         }
     }
+    
+    /*
+    func movePlayer(gestureInfo : UISwipeGestureRecognizer)
+    {
+        var nextTileSprite : SKSpriteNode!
+        
+        switch gestureInfo.direction
+            {
+        case UISwipeGestureRecognizerDirection.Up:
+            nextTileSprite = dungeon.movePlayerInDirection(dungeon.player, direction: .North)
+            
+        case UISwipeGestureRecognizerDirection.Down:
+            nextTileSprite = dungeon.movePlayerInDirection(dungeon.player, direction: .South)
+            
+        case UISwipeGestureRecognizerDirection.Right:
+            nextTileSprite = dungeon.movePlayerInDirection(dungeon.player, direction: .East)
+            
+        case UISwipeGestureRecognizerDirection.Left:
+            nextTileSprite = dungeon.movePlayerInDirection(dungeon.player, direction: .West)
+            
+        default:
+            debugPrintln("Not sure which direction you swiped... are you a wizard?")
+        }
+        
+        //Close any open container
+        dungeon.containerViewController.close()
+        
+        //Moves to new tile
+        if nextTileSprite != nil
+        {
+            self.removeChildrenInArray([lastTileSprite])
+            self.addChild(nextTileSprite)
+            lastTileSprite = nextTileSprite
+        }
+    }
+    */
     
     func interactWithCell(gestureInfo : UILongPressGestureRecognizer)
     {

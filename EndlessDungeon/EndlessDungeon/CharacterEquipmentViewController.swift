@@ -124,6 +124,8 @@ class CharacterEquipmentViewController : UIViewController, UICollectionViewDataS
             {
                 if(theVeiw is UIImageView)
                 {
+                    //THIS WILL CHANGE WHEN I LAY OUT THE SLOTS MANUALLY
+                    
                     //If item.slot == clicked slot
                     debugPrintln(highlightedCell)
                     player.equipItem(player.inventory.contents[itemView.indexPathForCell(highlightedCell!)!.row])

@@ -9,6 +9,12 @@
 import Foundation
 import SpriteKit
 
+extension Array {
+    func contains<T where T : Equatable>(obj: T) -> Bool {
+        return self.filter({$0 as? T == obj}).count > 0
+    }
+}
+
 class Character : WorldObject
 {
     var name : String!
@@ -59,21 +65,21 @@ class Character : WorldObject
     var neck : Item!
     var ammo : Item!
     */
-    var leftHand : Item!
-    var rightHand : Item!
-    var head : Item!
-    var body : Item!
-    var shoulders : Item!
-    var hands : Item!
-    var wrists : Item!
-    var feet : Item!
-    var waist : Item!
-    var torso : Item!
-    var eyes : Item!
-    var ring1 : Item!
-    var ring2 : Item!
-    var neck : Item!
-    var ammo : Item!
+    var leftHand : (Item!, [Item.Slot])!
+    var rightHand : (Item!, [Item.Slot])!
+    var head : (Item!, [Item.Slot])!
+    var body : (Item!, [Item.Slot])!
+    var shoulders : (Item!, [Item.Slot])!
+    var hands : (Item!, [Item.Slot])!
+    var wrists : (Item!, [Item.Slot])!
+    var feet : (Item!, [Item.Slot])!
+    var waist : (Item!, [Item.Slot])!
+    var torso : (Item!, [Item.Slot])!
+    var eyes : (Item!, [Item.Slot])!
+    var ring1 : (Item!, [Item.Slot])!
+    var ring2 : (Item!, [Item.Slot])!
+    var neck : (Item!, [Item.Slot])!
+    var ammo : (Item!, [Item.Slot])!
     var platinum : Int!
     var gold : Int!
     var silver : Int!
@@ -116,6 +122,14 @@ class Character : WorldObject
         
         name = playerName
         rollCharacter(1)
+    }
+    
+    init(playerName : String, level : Int)
+    {
+        super.init()
+        
+        name = playerName
+        rollCharacter(level)
     }
     
     func rollCharacter(level : Int) //Right now just creates a first level character regardless of level value passed in
@@ -175,35 +189,35 @@ class Character : WorldObject
         hairColor = "Grey"
         eyeColor = "Grey"
         
-        rightHand = Item(theName: "Empty Hand", theSlot: .None, theSize: .Medium, damDie: .d3, dieQnty: 1, theRange: 1, theWeapCat: .Simple, theWeaponType: .Unarmed, theDamType: .Bludgeoning)
+        rightHand = (Item(theName: "Empty Hand", theSlot: .None, theSize: .Medium, damDie: .d3, dieQnty: 1, theRange: 1, theWeapCat: .Simple, theWeaponType: .Unarmed, theDamType: .Bludgeoning), [.OneHanded, .TwoHanded])
         
-        leftHand = Item(theName: "Empty Hand", theSlot: .None, theSize: .Medium, damDie: .d3, dieQnty: 1, theRange: 1, theWeapCat: .Simple, theWeaponType: .Unarmed, theDamType: .Bludgeoning)
+        leftHand = (Item(theName: "Empty Hand", theSlot: .None, theSize: .Medium, damDie: .d3, dieQnty: 1, theRange: 1, theWeapCat: .Simple, theWeaponType: .Unarmed, theDamType: .Bludgeoning), [.OneHanded, .TwoHanded])
         
-        head = Item(theName: "Empty Head", theSlot: .Head, theSize: .Medium, aBonus: 0, sBonus: 0, naBonus: 0, dBonus: 0, maBonus: 0, theArmType: .LightArmor)
+        head = (Item(theName: "Empty Head", theSlot: .Head, theSize: .Medium, aBonus: 0, sBonus: 0, naBonus: 0, dBonus: 0, maBonus: 0, theArmType: .LightArmor), [.Head])
         
-        body = Item(theName: "Empty Body", theSlot: .Body, theSize: .Medium, aBonus: 0, sBonus: 0, naBonus: 0, dBonus: 0, maBonus: 0, theArmType: .LightArmor)
+        body = (Item(theName: "Empty Body", theSlot: .Body, theSize: .Medium, aBonus: 0, sBonus: 0, naBonus: 0, dBonus: 0, maBonus: 0, theArmType: .LightArmor), [.Body])
         
-        torso = Item(theName: "Empty Torso", theSlot: .Feet, theSize: .Medium, aBonus: 0, sBonus: 0, naBonus: 0, dBonus: 0, maBonus: 0, theArmType: .None)
+        torso = (Item(theName: "Empty Torso", theSlot: .Feet, theSize: .Medium, aBonus: 0, sBonus: 0, naBonus: 0, dBonus: 0, maBonus: 0, theArmType: .None), [.Torso])
         
-        shoulders = Item(theName: "Empty Shoulders", theSlot: .Shoulders, theSize: .Medium, aBonus: 0, sBonus: 0, naBonus: 0, dBonus: 0, maBonus: 0, theArmType: .LightArmor)
+        shoulders = (Item(theName: "Empty Shoulders", theSlot: .Shoulders, theSize: .Medium, aBonus: 0, sBonus: 0, naBonus: 0, dBonus: 0, maBonus: 0, theArmType: .LightArmor), [.Shoulders])
         
-        hands = Item(theName: "Empty Gloves", theSlot: .Hands, theSize: .Medium, aBonus: 0, sBonus: 0, naBonus: 0, dBonus: 0, maBonus: 0, theArmType: .LightArmor)
+        hands = (Item(theName: "Empty Gloves", theSlot: .Hands, theSize: .Medium, aBonus: 0, sBonus: 0, naBonus: 0, dBonus: 0, maBonus: 0, theArmType: .LightArmor), [.Hands])
         
-        wrists = Item(theName: "Empty Wrists", theSlot: .Wrists, theSize: .Medium, aBonus: 0, sBonus: 0, naBonus: 0, dBonus: 0, maBonus: 0, theArmType: .LightArmor)
+        wrists = (Item(theName: "Empty Wrists", theSlot: .Wrists, theSize: .Medium, aBonus: 0, sBonus: 0, naBonus: 0, dBonus: 0, maBonus: 0, theArmType: .LightArmor), [.Wrists])
         
-        feet = Item(theName: "Empty Feet", theSlot: .Feet, theSize: .Medium, aBonus: 0, sBonus: 0, naBonus: 0, dBonus: 0, maBonus: 0, theArmType: .LightArmor)
+        feet = (Item(theName: "Empty Feet", theSlot: .Feet, theSize: .Medium, aBonus: 0, sBonus: 0, naBonus: 0, dBonus: 0, maBonus: 0, theArmType: .LightArmor), [.Feet])
         
-        waist = Item(theName: "Empty Waist", theSlot: .Feet, theSize: .Medium, aBonus: 0, sBonus: 0, naBonus: 0, dBonus: 0, maBonus: 0, theArmType: .LightArmor)
+        waist = (Item(theName: "Empty Waist", theSlot: .Feet, theSize: .Medium, aBonus: 0, sBonus: 0, naBonus: 0, dBonus: 0, maBonus: 0, theArmType: .LightArmor), [.Waist])
         
-        eyes = Item(theName: "Empty Eyes", theSlot: .Feet, theSize: .Medium, aBonus: 0, sBonus: 0, naBonus: 0, dBonus: 0, maBonus: 0, theArmType: .None)
+        eyes = (Item(theName: "Empty Eyes", theSlot: .Feet, theSize: .Medium, aBonus: 0, sBonus: 0, naBonus: 0, dBonus: 0, maBonus: 0, theArmType: .None), [.Eyes])
         
-        neck = Item(theName: "Empty Neck", theSlot: .Feet, theSize: .Medium, aBonus: 0, sBonus: 0, naBonus: 0, dBonus: 0, maBonus: 0, theArmType: .None)
+        neck = (Item(theName: "Empty Neck", theSlot: .Feet, theSize: .Medium, aBonus: 0, sBonus: 0, naBonus: 0, dBonus: 0, maBonus: 0, theArmType: .None), [.Neck])
         
-        ring1 = Item(theName: "Empty Ring", theSlot: .Feet, theSize: .Medium, aBonus: 0, sBonus: 0, naBonus: 0, dBonus: 0, maBonus: 0, theArmType: .None)
+        ring1 = (Item(theName: "Empty Ring", theSlot: .Feet, theSize: .Medium, aBonus: 0, sBonus: 0, naBonus: 0, dBonus: 0, maBonus: 0, theArmType: .None), [.Ring])
         
-        ring2 = Item(theName: "Empty Ring", theSlot: .Feet, theSize: .Medium, aBonus: 0, sBonus: 0, naBonus: 0, dBonus: 0, maBonus: 0, theArmType: .None)
+        ring2 = (Item(theName: "Empty Ring", theSlot: .Feet, theSize: .Medium, aBonus: 0, sBonus: 0, naBonus: 0, dBonus: 0, maBonus: 0, theArmType: .None), [.Ring])
         
-        ammo = Item(theName: "Empty Ammo", theSlot: .None, theSize: .Medium, aBonus: 0, sBonus: 0, naBonus: 0, dBonus: 0, maBonus: 0, theArmType: .LightArmor)
+        ammo = (Item(theName: "Empty Ammo", theSlot: .None, theSize: .Medium, aBonus: 0, sBonus: 0, naBonus: 0, dBonus: 0, maBonus: 0, theArmType: .LightArmor), [.Ammo])
         
         inventory = Container()
     }
@@ -330,11 +344,35 @@ class Character : WorldObject
         inventory.addItem(item)
     }
     
-    func equipItem(item : Item, toPlayerSlot : Item)
+    //Complete this when I lay out the inventory slot view manually
+    /*
+    func equipItem(item : Item, toPlayerSlot : (Item, [Item.Slot]))
     {
+        //If tried to equip to correct slot
+        //if(contains(item.slot, toPlayerSlot.1))
+        if(toPlayerSlot.1.contains(item.slot))
+        {
+            //If trying to equip two handed weapon
+            if(item.slot == .TwoHanded)
+            {
+                //Unequip both hands and equip in clicked hand
+                rightHand.0 = item
+                leftHand.0 = item
+            }
+            else
+            {
+                //Equip in the slot
+                toPlayerSlot.0 = item
+            }
+            
+            return
+        }
         
+        debugPrintln("Could not equip")
     }
+    */
     
+
     func equipItem(item : Item)
     {
         switch item.slot
@@ -342,96 +380,96 @@ class Character : WorldObject
         case .OneHanded:
             
             //If holding a two handed weapon
-            if rightHand.slot == Item.Slot.TwoHanded
+            if rightHand.0.slot == Item.Slot.TwoHanded
             {
                 //Unequip two handed weapon and equip new item in right hand
-                leftHand = Item.emptyItem()
-                rightHand = item
+                leftHand.0 = Item.emptyItem()
+                rightHand.0 = item
             }
                 //If unarmed
-            else if rightHand.slot == .None
+            else if rightHand.0.slot == .None
             {
                 //Equip in right hand
-                rightHand = item
+                rightHand.0 = item
             }
                 //if holding one handed weapon in right hand
-            else if rightHand.slot == .OneHanded
+            else if rightHand.0.slot == .OneHanded
             {
                 //Equip in left hand
-                leftHand = item
+                leftHand.0 = item
             }
                 //holding one handed weapon in both hands
-            else if rightHand.slot == .OneHanded && leftHand.slot == .OneHanded
+            else if rightHand.0.slot == .OneHanded && leftHand.0.slot == .OneHanded
             {
                 //Equip in left hand
-                leftHand = item
+                leftHand.0 = item
             }
             
         case .TwoHanded:
             
             //Unequip weapons and equip two handed weapon in right hand
-            leftHand = Item.emptyItem()
-            rightHand = item
+            leftHand.0 = Item.emptyItem()
+            rightHand.0 = item
             
         case .Ammo:
             
-            ammo = item
+            ammo.0 = item
             
         case .Body:
             
-            body = item
+            body.0 = item
             
         case .Shoulders:
             
-            shoulders = item
+            shoulders.0 = item
             
         case .Head:
             
-            head = item
+            head.0 = item
             
         case .Hands:
             
-            hands = item
+            hands.0 = item
             
         case .Wrists:
             
-            wrists = item
+            wrists.0 = item
             
         case .Feet:
             
-            feet = item
+            feet.0 = item
             
         case .Eyes:
             
-            eyes = item
+            eyes.0 = item
             
         case .Neck:
             
-            neck = item
+            neck.0 = item
             
         case .Torso:
             
-            torso = item
+            torso.0 = item
             
         case .Waist:
             
-            waist = item
+            waist.0 = item
             
         case .Ring:
             
-            ring1 = item
+            ring1.0 = item
             
             //Add in ring 2 stuff
             
         case .None:
             
-            if leftHand.slot != .None
+            if leftHand.0.slot != .None
             {
-                leftHand = item
+                leftHand.0 = item
             }
             else
             {
-                rightHand = item
+                rightHand.0 = item
             }
         }
         
@@ -494,7 +532,7 @@ class Character : WorldObject
         var highestNABonus : Int = 0
         var highestDBonus : Int = 0
         var highestMABonus : Int = 0
-        var eItems : [Item] = [leftHand, rightHand, head, body, shoulders, hands, wrists, feet, waist, torso, eyes, ring1, ring2, neck, ammo]
+        var eItems : [Item] = [leftHand.0, rightHand.0, head.0, body.0, shoulders.0, hands.0, wrists.0, feet.0, waist.0, torso.0, eyes.0, ring1.0, ring2.0, neck.0, ammo.0]
         
         for i in eItems
         {

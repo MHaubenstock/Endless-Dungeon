@@ -22,6 +22,7 @@ class Item
     var damageDie : Die
     var qntyOfDamageDice : Int
     var range : Int
+    var effects : [Effect]?
     var armorBonus : Int
     var shieldBonus : Int
     var naturalArmorBonus : Int
@@ -175,8 +176,20 @@ class Item
         return Item(theName: "Shortbow", theSlot: .TwoHanded, theSize: .Medium, damDie: .d6, dieQnty: 1, theRange: 6, theWeapCat: .Simple, theWeaponType: .Ranged, theDamType: .Slashing)
     }
     
+    class func leatherArmor() -> Item
+    {
+        return Item(theName: "Leather Armor", theSlot: .Body, theSize: .Medium, aBonus: 2, sBonus: 0, naBonus: 0, dBonus: 0, maBonus: 0, theArmType: .LightArmor)
+    }
+    
+    class func shield() -> Item
+    {
+        return Item(theName: "Light Wooden Shield", theSlot: .OneHanded, theSize: .Medium, damDie: .None, dieQnty: 0, theRange: 1, theWeapCat: .None, theWeaponType: .OneHanded, theDamType: .Bludgeoning)
+    }
+    
     class func randomItem() -> Item
     {
-        return arc4random_uniform(10) > 5 ? shortBow() : shortSword()
+        var itemCreationFunctions : [() -> Item] = [shortBow, shortSword]
+        
+        return arc4random_uniform(10) > 5 ? itemCreationFunctions[0]() : itemCreationFunctions[1]()
     }
 }

@@ -11,6 +11,9 @@ import SpriteKit
 
 class Tile
 {
+    var enemies : [NPCharacter] = []
+    var lootables : [Container] = []
+    
     var cells : [[Cell]]
     var entranceCell : Cell
     var exitCells : [Cell]
@@ -179,5 +182,39 @@ class Tile
     func isValidIndex(theIndex : (Int, Int)) -> Bool
     {
         return (theIndex.0 >= 0 && theIndex.0 < numXCells && theIndex.1 >= 0 && theIndex.1 < numYCells)
+    }
+    
+    //For state searches and such
+    func getSimplifiedTileState() -> [[Int]]
+    {
+        var simplifiedTileState : [[Int]] = Array(count: numYCells, repeatedValue: Array(count: numXCells, repeatedValue: 0))
+        
+        for x in 0...(numXCells! - 1)
+        {
+            for y in 0...(numYCells! - 1)
+            {
+                if(cells[y][x].cellType == .Wall)
+                {
+                    simplifiedTileState[y][x] = 0
+                }
+                else if(cells[y][x].characterInCell != nil)
+                {
+                    if(cells[y][x].characterInCell is Player)
+                    {
+                        simplifiedTileState[y][x] = 1
+                    }
+                    else if(cells[y][x].characterInCell is NPCharacter)
+                    {
+                        simplifiedTileState[y][x] = 2
+                    }
+                }
+                else
+                {
+                    simplifiedTileState[y][x] = 3
+                }
+            }
+        }
+        
+        return simplifiedTileState
     }
 }

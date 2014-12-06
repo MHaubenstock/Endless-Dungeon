@@ -19,6 +19,7 @@ class Character : WorldObject
 {
     var name : String!
     var sprite : SKSpriteNode!
+    var tilePosition : (Int, Int)!
     
     //Character stats
     var strength : Int!
@@ -47,24 +48,6 @@ class Character : WorldObject
     var miscellaneousSkillModifiers : [Skill : Int]!
     
     //Equipment
-    //Make these a dictionary
-    /*
-    var leftHand : Item!
-    var rightHand : Item!
-    var head : Item!
-    var body : Item!
-    var shoulders : Item!
-    var hands : Item!
-    var wrists : Item!
-    var feet : Item!
-    var waist : Item!
-    var torso : Item!
-    var eyes : Item!
-    var ring1 : Item!
-    var ring2 : Item!
-    var neck : Item!
-    var ammo : Item!
-    */
     var leftHand : (Item!, [Item.Slot])!
     var rightHand : (Item!, [Item.Slot])!
     var head : (Item!, [Item.Slot])!
@@ -251,7 +234,8 @@ class Character : WorldObject
         }
         
         //Sort in descending order
-        rolls.sorted{$0 > $1}
+        //rolls.sorted{$0 > $1}
+        rolls.sort{$0 > $1}
         
         //return the sum of the largest 3 values
         return rolls[0] + rolls[1] + rolls[2]
@@ -282,6 +266,18 @@ class Character : WorldObject
     {
         var dam : Int = rollDie(weapon.qntyOfDamageDice, die: weapon.damageDie) + (weapon.weaponType != .Ranged ? strengthBonus : 0)
         
+        //Add in damage from any effects
+        if weapon.effects != nil
+        {
+            for e in weapon.effects!
+            {
+                if e.qntyOfDamageDice > 0 && e.damageDie != .None
+                {
+                    dam += rollDie(e.qntyOfDamageDice, die: e.damageDie)
+                }
+            }
+        }
+        
         return (dam > 0 ? dam : 1)
     }
     
@@ -305,6 +301,16 @@ class Character : WorldObject
         }
     }
     
+    func attackRange() -> Int
+    {
+        return rightHand.0.range
+    }
+    
+    func rollInitiative() -> Int
+    {
+        return rollDie(1, die: .d20) + dexterityBonus
+    }
+    
     func displayFadeAwayLabel(text : String, color : UIColor)
     {
         //create action to make label move up and disappear
@@ -313,7 +319,7 @@ class Character : WorldObject
         label.fontColor = color
         label.fontSize = 12
         label.fontName = "Kenzo Regular"
-        
+
         label.runAction(SKAction.moveByX(0, y: 20, duration: 1.25), completion: {
             self.sprite.removeChildrenInArray([label])
             

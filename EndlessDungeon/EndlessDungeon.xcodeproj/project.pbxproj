@@ -32,7 +32,11 @@
 		4C1F0BB219CF3635001F336B /* Dungeon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1F0BB119CF3635001F336B /* Dungeon.swift */; };
 		4C4A9E7419E410040068EAAB /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A9E7319E410040068EAAB /* Container.swift */; };
 		4C4A9E7A19E439C20068EAAB /* ContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C4A9E7919E439C20068EAAB /* ContainerView.xib */; };
+		4C71BBDE19F53F150012AD86 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C71BBDD19F53F140012AD86 /* Status.swift */; };
+		4C71BBE019F53F290012AD86 /* Effect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C71BBDF19F53F290012AD86 /* Effect.swift */; };
+		4C71BBE619F7233A0012AD86 /* TypeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C71BBE519F7233A0012AD86 /* TypeEnum.swift */; };
 		4CA748B919E9621D0097CCBF /* DungeonMaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA748B819E9621D0097CCBF /* DungeonMaster.swift */; };
+		4CA748ED19F032E00097CCBF /* NPCTurnState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA748EC19F032E00097CCBF /* NPCTurnState.swift */; };
 		4CC399C519CE8FAC00B42FB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC399C419CE8FAC00B42FB7 /* AppDelegate.swift */; };
 		4CC399C719CE8FAC00B42FB7 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4CC399C619CE8FAC00B42FB7 /* GameScene.sks */; };
 		4CC399C919CE8FAC00B42FB7 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC399C819CE8FAC00B42FB7 /* GameScene.swift */; };
@@ -91,7 +95,11 @@
 		4C1F0BB119CF3635001F336B /* Dungeon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dungeon.swift; sourceTree = "<group>"; };
 		4C4A9E7319E410040068EAAB /* Container.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
 		4C4A9E7919E439C20068EAAB /* ContainerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContainerView.xib; sourceTree = "<group>"; };
+		4C71BBDD19F53F140012AD86 /* Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
+		4C71BBDF19F53F290012AD86 /* Effect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Effect.swift; sourceTree = "<group>"; };
+		4C71BBE519F7233A0012AD86 /* TypeEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeEnum.swift; sourceTree = "<group>"; };
 		4CA748B819E9621D0097CCBF /* DungeonMaster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DungeonMaster.swift; sourceTree = "<group>"; };
+		4CA748EC19F032E00097CCBF /* NPCTurnState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPCTurnState.swift; sourceTree = "<group>"; };
 		4CC399BF19CE8FAC00B42FB7 /* EndlessDungeon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EndlessDungeon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CC399C319CE8FAC00B42FB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CC399C419CE8FAC00B42FB7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -179,6 +187,30 @@
 			name = "Wall Tiles";
 			sourceTree = "<group>";
 		};
+		4C71BBDA19F53EC40012AD86 /* Statuses */ = {
+			isa = PBXGroup;
+			children = (
+				4C71BBDD19F53F140012AD86 /* Status.swift */,
+			);
+			name = Statuses;
+			sourceTree = "<group>";
+		};
+		4C71BBE119F719350012AD86 /* Effects */ = {
+			isa = PBXGroup;
+			children = (
+				4C71BBDF19F53F290012AD86 /* Effect.swift */,
+			);
+			name = Effects;
+			sourceTree = "<group>";
+		};
+		4C71BBE419F723130012AD86 /* Types */ = {
+			isa = PBXGroup;
+			children = (
+				4C71BBE519F7233A0012AD86 /* TypeEnum.swift */,
+			);
+			name = Types;
+			sourceTree = "<group>";
+		};
 		4CC399B619CE8FAC00B42FB7 = {
 			isa = PBXGroup;
 			children = (
@@ -205,12 +237,16 @@
 				4CC399C819CE8FAC00B42FB7 /* GameScene.swift */,
 				4CC399CA19CE8FAC00B42FB7 /* GameViewController.swift */,
 				4C1F0BB119CF3635001F336B /* Dungeon.swift */,
+				4CA748EC19F032E00097CCBF /* NPCTurnState.swift */,
 				4CA748B819E9621D0097CCBF /* DungeonMaster.swift */,
 				4C1F0BAF19CEF799001F336B /* Tile.swift */,
 				4C00929319D513B000AB6D38 /* Cell.swift */,
 				4CCA704019E58BC00020DFD6 /* Container Images */,
 				4C0BBCE919D984BC009865DB /* Tile Images */,
 				4C00929719D5ECD900AB6D38 /* World Objects */,
+				4C71BBE119F719350012AD86 /* Effects */,
+				4C71BBDA19F53EC40012AD86 /* Statuses */,
+				4C71BBE419F723130012AD86 /* Types */,
 				4CC399CC19CE8FAC00B42FB7 /* Main.storyboard */,
 				4CC399CF19CE8FAC00B42FB7 /* Images.xcassets */,
 				4CC399D119CE8FAC00B42FB7 /* LaunchScreen.xib */,
@@ -429,10 +465,13 @@
 			files = (
 				4C00929619D5A68800AB6D38 /* PlayerEnums.swift in Sources */,
 				4CCA705619E712050020DFD6 /* CharacterEquipmentViewController.swift in Sources */,
+				4C71BBE019F53F290012AD86 /* Effect.swift in Sources */,
 				4CCA704919E6C4D20020DFD6 /* ContainerViewController.swift in Sources */,
 				4CC399C919CE8FAC00B42FB7 /* GameScene.swift in Sources */,
+				4C71BBE619F7233A0012AD86 /* TypeEnum.swift in Sources */,
 				4CA748B919E9621D0097CCBF /* DungeonMaster.swift in Sources */,
 				4CC399CB19CE8FAC00B42FB7 /* GameViewController.swift in Sources */,
+				4CA748ED19F032E00097CCBF /* NPCTurnState.swift in Sources */,
 				4C0092A119D5ED1F00AB6D38 /* Item.swift in Sources */,
 				4C1F0BB219CF3635001F336B /* Dungeon.swift in Sources */,
 				4CCA705219E710FE0020DFD6 /* CharacterSheetViewController.swift in Sources */,
@@ -441,6 +480,7 @@
 				4C00929419D513B000AB6D38 /* Cell.swift in Sources */,
 				4C00929019D2EBB800AB6D38 /* Player.swift in Sources */,
 				4CCA704C19E70A790020DFD6 /* Door.swift in Sources */,
+				4C71BBDE19F53F150012AD86 /* Status.swift in Sources */,
 				4C4A9E7419E410040068EAAB /* Container.swift in Sources */,
 				4CCA704719E6C38D0020DFD6 /* Openable.swift in Sources */,
 				4CCA704E19E70A9B0020DFD6 /* Character.swift in Sources */,

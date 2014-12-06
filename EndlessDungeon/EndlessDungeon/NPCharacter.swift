@@ -10,5 +10,5 @@ import Foundation
 
 class NPCharacter : Character
 {
-    
+    var isAnimating : Bool = false
 }

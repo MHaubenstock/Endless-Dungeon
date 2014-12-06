@@ -12,7 +12,7 @@ import SpriteKit
 class Dungeon
 {
     var player : Player!
-    var enemies : [NPCharacter]?
+    //var enemies : [NPCharacter]?
     
     var tiles = [[Tile]]()  //New tiles are added to this as they are visited
     var cellSize : Int!
@@ -22,27 +22,29 @@ class Dungeon
     var gridLeft : CGFloat!
     var gridBottom : CGFloat!
     var frame : CGRect!
+    //Index of current tile in the dungeon
     var currentTilePos : (Int, Int)!
     
     var numXCells : Int!
     var numYCells : Int!
     
+    //Dungeon state
     var created : Bool = false
     
     //Views
     var containerViewController : ContainerViewController!
     var characterEquipmentViewController : CharacterEquipmentViewController!
 
-    enum Direction
+    enum Direction : String
     {
-        case North
-        case South
-        case East
-        case West
-        case Northeast
-        case Northwest
-        case Southeast
-        case Southwest
+        case North = "North"
+        case South = "South"
+        case East = "East"
+        case West = "West"
+        case Northeast = "Northeast"
+        case Northwest = "Northwest"
+        case Southeast = "Southeast"
+        case Southwest = "Southwest"
     }
     
     //Create singleton
@@ -253,6 +255,11 @@ class Dungeon
         
         entranceTile.roomGenerated = true
         entranceTile.tileSprite = drawTile(currentTilePos.0, y: currentTilePos.1)
+        
+        //Possibly place enemies and treasure chests
+        entranceTile.tileSprite.addChild(createEnemyOnCurrentTile())
+        entranceTile.tileSprite.addChild(createTreasureChestOnCurrentTile())
+        //
     }
 
     func generateRoomForTile(tileX : Int, tileY : Int) -> Tile
@@ -723,11 +730,14 @@ class Dungeon
         return currentTile.cells[yIndex][xIndex].cellType
     }
     
-    func distanceBetweenCells(fromCell : Cell, toCell : Cell) -> Int
+    class func distanceBetweenCells(fromCell : Cell, toCell : Cell) -> Int
     {
-        //debugPrintln(String(toCell.index.0 - fromCell.index.0) + "    " + String(toCell.index.1 - fromCell.index.1))
-        //return Int(sqrt(pow(CGFloat(toCell.index.0 - fromCell.index.0), CGFloat(2)) + pow(CGFloat(toCell.index.1 - fromCell.index.1), CGFloat(2))))
         return max(abs(toCell.index.0 - fromCell.index.0), abs(toCell.index.1 - fromCell.index.1))
+    }
+    
+    class func distanceBetweenCellsByIndex(fromIndex : (Int, Int), toIndex : (Int, Int)) -> Int
+    {
+        return max(abs(toIndex.0 - fromIndex.0), abs(toIndex.1 - fromIndex.1))
     }
     
     func wallDirectionOfEntranceOrExitAtPosition(position : CGPoint) -> Direction
@@ -760,8 +770,7 @@ class Dungeon
         return (cell.0 >= 1 && cell.0 < numXCells - 1) && (cell.1 >= 1 && cell.1 < numYCells - 1)
     }
     
-    //From DungeonRPG
-    func movePlayerInDirection(player : Player, direction : Direction) -> SKSpriteNode?
+    func movePlayerInDirection(direction : Direction) -> SKSpriteNode?
     {
         var proposedPosition : CGPoint!
         
@@ -792,7 +801,6 @@ class Dungeon
             proposedPosition = CGPoint(x: player.sprite.position.x - CGFloat(cellSize), y: player.sprite.position.y - CGFloat(cellSize))
         }
         
-        //var cellType = cellTypeAtScreenLocation(proposedPosition)
         var thisCell : Cell = cellAtScreenLocation(player.sprite.position)!
         var nextCell : Cell = cellAtScreenLocation(proposedPosition)!
         
@@ -826,13 +834,118 @@ class Dungeon
             player.sprite.runAction(SKAction.moveTo(proposedPosition, duration:0.125))
         }
         
+        player.tilePosition = nextCell.index
+        
         return nil
+    }
+    
+    func moveNPCharacterInDirection(character : NPCharacter, direction : Direction)
+    {
+        var proposedPosition : CGPoint!
+        character.isAnimating = true
+        
+        switch direction
+            {
+        case .North:
+            proposedPosition = CGPoint(x: character.sprite.position.x, y: character.sprite.position.y + CGFloat(cellSize))
+            
+        case .South:
+            proposedPosition = CGPoint(x: character.sprite.position.x, y: character.sprite.position.y - CGFloat(cellSize))
+            
+        case .East:
+            proposedPosition = CGPoint(x: character.sprite.position.x + CGFloat(cellSize), y: character.sprite.position.y)
+            
+        case .West:
+            proposedPosition = CGPoint(x: character.sprite.position.x - CGFloat(cellSize), y: character.sprite.position.y)
+            
+        case .Northeast:
+            proposedPosition = CGPoint(x: character.sprite.position.x + CGFloat(cellSize), y: character.sprite.position.y + CGFloat(cellSize))
+            
+        case .Northwest:
+            proposedPosition = CGPoint(x: character.sprite.position.x - CGFloat(cellSize), y: character.sprite.position.y + CGFloat(cellSize))
+            
+        case .Southeast:
+            proposedPosition = CGPoint(x: character.sprite.position.x + CGFloat(cellSize), y: character.sprite.position.y - CGFloat(cellSize))
+            
+        case .Southwest:
+            proposedPosition = CGPoint(x: character.sprite.position.x - CGFloat(cellSize), y: character.sprite.position.y - CGFloat(cellSize))
+        }
+        
+        var thisCell : Cell = cellAtScreenLocation(character.sprite.position)!
+        var nextCell : Cell = cellAtScreenLocation(proposedPosition)!
+        
+        if nextCell.cellType != .Wall && nextCell.cellType != .Exit && nextCell.cellType != .Entrance
+        {
+            //Modify tracked cell character contents
+            thisCell.characterInCell = nil
+            nextCell.characterInCell = character
+            character.tilePosition = nextCell.index
+            
+            //character.sprite.runAction(SKAction.moveTo(proposedPosition, duration:0.125))
+            character.sprite.runAction(SKAction.moveTo(proposedPosition, duration:0.125), completion: {
+                character.isAnimating = false
+            })
+        }
+    }
+    
+    func moveNPCharacterInDirections(character : NPCharacter, directions : [Direction])
+    {
+        var proposedPosition : CGPoint!
+        
+        switch directions[0]
+            {
+        case .North:
+            proposedPosition = CGPoint(x: character.sprite.position.x, y: character.sprite.position.y + CGFloat(cellSize))
+            
+        case .South:
+            proposedPosition = CGPoint(x: character.sprite.position.x, y: character.sprite.position.y - CGFloat(cellSize))
+            
+        case .East:
+            proposedPosition = CGPoint(x: character.sprite.position.x + CGFloat(cellSize), y: character.sprite.position.y)
+            
+        case .West:
+            proposedPosition = CGPoint(x: character.sprite.position.x - CGFloat(cellSize), y: character.sprite.position.y)
+            
+        case .Northeast:
+            proposedPosition = CGPoint(x: character.sprite.position.x + CGFloat(cellSize), y: character.sprite.position.y + CGFloat(cellSize))
+            
+        case .Northwest:
+            proposedPosition = CGPoint(x: character.sprite.position.x - CGFloat(cellSize), y: character.sprite.position.y + CGFloat(cellSize))
+            
+        case .Southeast:
+            proposedPosition = CGPoint(x: character.sprite.position.x + CGFloat(cellSize), y: character.sprite.position.y - CGFloat(cellSize))
+            
+        case .Southwest:
+            proposedPosition = CGPoint(x: character.sprite.position.x - CGFloat(cellSize), y: character.sprite.position.y - CGFloat(cellSize))
+        }
+        
+        var thisCell : Cell = cellAtScreenLocation(character.sprite.position)!
+        var nextCell : Cell = cellAtScreenLocation(proposedPosition)!
+        
+        if nextCell.cellType != .Wall && nextCell.cellType != .Exit && nextCell.cellType != .Entrance
+        {
+            //Modify tracked cell character contents
+            thisCell.characterInCell = nil
+            nextCell.characterInCell = character
+            character.tilePosition = nextCell.index
+            
+            //character.sprite.runAction(SKAction.moveTo(proposedPosition, duration:0.125))
+            character.sprite.runAction(SKAction.moveTo(proposedPosition, duration:0.125), completion: {
+                if directions.count > 1
+                {
+                    var newDirections : [Direction] = directions
+                    newDirections.removeAtIndex(0)
+                    
+                    self.moveNPCharacterInDirections(character, directions: newDirections)
+                }
+            })
+        }
     }
     
     func attackCharacter(attacker : Character, defender : Character)
     {
         //If within range
-        if(attacker.rightHand.0.range >= distanceBetweenCells(cellAtScreenLocation(attacker.sprite.position)!, toCell: cellAtScreenLocation(defender.sprite.position)!))
+        if(attacker.rightHand.0.range >= Dungeon.distanceBetweenCells(cellAtScreenLocation(attacker.sprite.position)!, toCell: cellAtScreenLocation(defender.sprite.position)!))
         {
             defender.takeDamage(attacker.attackCharacter(defender, weapon: attacker.rightHand.0))
         }
@@ -862,14 +975,12 @@ class Dungeon
         theOpenable.open()
     }
     
-    /*
-    func addPlayer(player : Player)
+    func executeNPCharacterTurn(character : NPCharacter)
     {
-        players?.append(player)
+        
     }
-    */
     
-    func createEnemyOnCurrentTile() -> NPCharacter
+    func createEnemyOnCurrentTile() -> SKSpriteNode
     {
         //Roll enemy
         var enemy : NPCharacter = NPCharacter(playerName: "Kobold")
@@ -881,12 +992,14 @@ class Dungeon
         
         //draw enemy at random empty cell
         chosenCell.characterInCell = enemy
+        enemy.tilePosition = chosenCell.index
         drawPlayerAtLocation(enemy, location: chosenCell.position)
+        tile.enemies.append(enemy)
         
-        return enemy
+        return enemy.sprite
     }
     
-    func createTreasureChestOnCurrentTile(theFrame : CGRect) -> Container
+    func createTreasureChestOnCurrentTile() -> SKSpriteNode
     {
         var chest : Container = Container(numOfItems: 4)
         
@@ -898,14 +1011,16 @@ class Dungeon
         //draw chest
         chosenCell.openableInCell = chest
         drawChestAtLocation(chest, location: chosenCell.position)
+        tile.lootables.append(chest)
         
-        return chest
+        return chest.sprite
     }
     
     func addPlayerAtLocation(player : Character, location : CGPoint)
     {
-        //players?.append(player)
-        cellAtScreenLocation(location)?.characterInCell = player
+        var cell : Cell! = cellAtScreenLocation(location)?
+        cell.characterInCell = player
+        player.tilePosition = cell.index
         drawPlayerAtLocation(player, location: location)
     }
     
@@ -935,5 +1050,31 @@ class Dungeon
         chest.sprite.size = CGSizeMake(CGFloat(cellSize / 2), CGFloat(cellSize / 2))
         chest.sprite.position = location
         chest.sprite.zPosition = 1
+    }
+    
+    func rollInitiativeForCurrentTile() -> [Character]
+    {
+        var charactersInTile : [Character] = [player] + getCurrentTile().enemies
+        var initiative : [Character] = []
+        var initRolls : [(Int, Character)] = []
+        
+        //Roll initiative
+        for c in charactersInTile
+        {
+            initRolls += [(c.rollInitiative(), c)]
+            debugPrintln(c.name + "    " + String(initRolls[initRolls.count - 1].0))
+        }
+        
+        //Sort by highest initiative
+        initRolls.sort{$0.0 > $1.0}
+        
+        //Populate initiative with correct order
+        for i in initRolls
+        {
+            initiative.append(i.1)
+            debugPrintln(i.1.name)
+        }
+        
+        return initiative
     }
 }

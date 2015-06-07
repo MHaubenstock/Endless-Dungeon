@@ -21,8 +21,9 @@ class Item
     var size : Size
     var damageDie : Die
     var qntyOfDamageDice : Int
+    var damageQuantityDieTypes : [(Int, Die, TypeEnum.DamageType)]
     var range : Int
-    var effects : [Effect]?
+    var properties : [Property]?
     var armorBonus : Int
     var shieldBonus : Int
     var naturalArmorBonus : Int
@@ -99,6 +100,7 @@ class Item
         PPCost = 0
         damageDie = .None
         qntyOfDamageDice = 0
+        damageQuantityDieTypes = []
         range = 0
         weaponCategory = .None
         weaponType = .None
@@ -125,6 +127,7 @@ class Item
         damageDie = damDie
         range = theRange
         qntyOfDamageDice = dieQnty
+        damageQuantityDieTypes = [(dieQnty, damDie, .Normal)]
         weaponCategory = theWeapCat
         weaponType = theWeaponType
         damageType = theDamType
@@ -149,6 +152,7 @@ class Item
         size = theSize
         damageDie = .None
         qntyOfDamageDice = 0
+        damageQuantityDieTypes = []
         range = 0
         weaponCategory = .None
         weaponType = .None
@@ -159,6 +163,11 @@ class Item
         naturalArmorBonus = naBonus
         deflectBonus = dBonus
         miscArmorBonus = maBonus
+    }
+    
+    func upgradeItem(property : Property)
+    {
+        properties?.append(property)
     }
     
     class func emptyItem() -> Item

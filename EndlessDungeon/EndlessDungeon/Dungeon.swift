@@ -1018,7 +1018,7 @@ class Dungeon
     
     func addPlayerAtLocation(player : Character, location : CGPoint)
     {
-        var cell : Cell! = cellAtScreenLocation(location)?
+        var cell : Cell! = cellAtScreenLocation(location)
         cell.characterInCell = player
         player.tilePosition = cell.index
         drawPlayerAtLocation(player, location: location)

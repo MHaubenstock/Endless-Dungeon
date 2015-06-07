@@ -25,8 +25,9 @@ class TypeEnum
         case Aquatic
     }
     
-    enum EffectElement
+    enum DamageType
     {
+        case Normal
         case Air
         case Fire
         case Earth

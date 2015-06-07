@@ -43,7 +43,7 @@ class CharacterEquipmentViewController : UIViewController, UICollectionViewDataS
     @IBOutlet var ammoSlot : UIImageView!
     @IBOutlet var itemLabel : UILabel!
     
-    override init()
+    init()
     {
         super.init(nibName: "CharacterEquipmentView", bundle: nil)
 
@@ -176,7 +176,7 @@ class CharacterEquipmentViewController : UIViewController, UICollectionViewDataS
         */
     }
     
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent)
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent)
     {
         for touch : AnyObject in touches
         {
@@ -197,7 +197,7 @@ class CharacterEquipmentViewController : UIViewController, UICollectionViewDataS
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
     {
-        var itemCell : UICollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("InventoryItemCell", forIndexPath: indexPath) as UICollectionViewCell
+        var itemCell : UICollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("InventoryItemCell", forIndexPath: indexPath) as! UICollectionViewCell
         
         return itemCell
     }

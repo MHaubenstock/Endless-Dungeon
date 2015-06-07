@@ -279,7 +279,7 @@ class GameScene: SKScene
     {
         //Start with a basic depth-first search to get within range and then attack the player
         //Update to something more intelligent later
-        var enemy : NPCharacter = initiative[initiativeTurn] as NPCharacter
+        var enemy : NPCharacter = initiative[initiativeTurn] as! NPCharacter
         var playerCell : (Int, Int) = dungeon.player.tilePosition
         var currentState : NPCTurnState = NPCTurnState(movementRem: enemy.speed / 5, tilePos: enemy.tilePosition, weapRange: enemy.rightHand.0.range, cellState: dungeon.getCurrentTile().getSimplifiedTileState(), fState: nil)
         currentState.tileCellStates[enemy.tilePosition.1][enemy.tilePosition.0] = 4

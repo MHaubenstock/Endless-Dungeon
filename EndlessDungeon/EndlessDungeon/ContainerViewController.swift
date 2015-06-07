@@ -15,7 +15,7 @@ class ContainerViewController : UIViewController, UITableViewDataSource, UITable
     var dungeon : Dungeon = Dungeon.sharedInstance
     @IBOutlet var itemTable: UITableView!
     
-    override init()
+    init()
     {
         container = Container()
         
@@ -64,7 +64,7 @@ class ContainerViewController : UIViewController, UITableViewDataSource, UITable
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        var cell = tableView.dequeueReusableCellWithIdentifier("ContainerCell") as UITableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("ContainerCell") as! UITableViewCell
         //cell.textLabel?.text = container.contents[indexPath.row].name
         
         return cell

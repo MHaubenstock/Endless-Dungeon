@@ -1,16 +1,30 @@
 //
-//  Effects.swift
+//  Property.swift
 //  EndlessDungeon
 //
-//  Created by Michael Haubenstock on 10/20/14.
+//  Created by Michael Haubenstock on 12/6/14.
 //  Copyright (c) 2014 Michael Haubenstock. All rights reserved.
 //
 
 import Foundation
 
-class Effect
+class Property
 {
-    //Effects cause status change
+    var damageQuantityDieTypes : [(Int, Die, TypeEnum.DamageType)]?
+    var spellLikeAbility : [(String, Int)]?  //Name, caster level
+    
+    init()
+    {
+        
+    }
+    
+    //Should the property apply to the character or object being interacted with
+    func shouldActivate() -> Bool   //-> Requirements
+    {
+        return true
+    }
+    
+    /*
     var damageDie : Die
     var qntyOfDamageDice : Int
     var damageType : TypeEnum.EffectElement
@@ -27,4 +41,5 @@ class Effect
             statusChanges = statusEffects
         }
     }
+    */
 }

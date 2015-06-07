@@ -33,8 +33,9 @@
 		4C4A9E7419E410040068EAAB /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A9E7319E410040068EAAB /* Container.swift */; };
 		4C4A9E7A19E439C20068EAAB /* ContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C4A9E7919E439C20068EAAB /* ContainerView.xib */; };
 		4C71BBDE19F53F150012AD86 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C71BBDD19F53F140012AD86 /* Status.swift */; };
-		4C71BBE019F53F290012AD86 /* Effect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C71BBDF19F53F290012AD86 /* Effect.swift */; };
 		4C71BBE619F7233A0012AD86 /* TypeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C71BBE519F7233A0012AD86 /* TypeEnum.swift */; };
+		4C786D7E1A340A93009903ED /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C786D7D1A340A93009903ED /* Property.swift */; };
+		4C786D821A340F41009903ED /* SupernaturalAbility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C786D811A340F41009903ED /* SupernaturalAbility.swift */; };
 		4CA748B919E9621D0097CCBF /* DungeonMaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA748B819E9621D0097CCBF /* DungeonMaster.swift */; };
 		4CA748ED19F032E00097CCBF /* NPCTurnState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA748EC19F032E00097CCBF /* NPCTurnState.swift */; };
 		4CC399C519CE8FAC00B42FB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC399C419CE8FAC00B42FB7 /* AppDelegate.swift */; };
@@ -96,8 +97,9 @@
 		4C4A9E7319E410040068EAAB /* Container.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
 		4C4A9E7919E439C20068EAAB /* ContainerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContainerView.xib; sourceTree = "<group>"; };
 		4C71BBDD19F53F140012AD86 /* Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
-		4C71BBDF19F53F290012AD86 /* Effect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Effect.swift; sourceTree = "<group>"; };
 		4C71BBE519F7233A0012AD86 /* TypeEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeEnum.swift; sourceTree = "<group>"; };
+		4C786D7D1A340A93009903ED /* Property.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Property.swift; sourceTree = "<group>"; };
+		4C786D811A340F41009903ED /* SupernaturalAbility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupernaturalAbility.swift; sourceTree = "<group>"; };
 		4CA748B819E9621D0097CCBF /* DungeonMaster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DungeonMaster.swift; sourceTree = "<group>"; };
 		4CA748EC19F032E00097CCBF /* NPCTurnState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPCTurnState.swift; sourceTree = "<group>"; };
 		4CC399BF19CE8FAC00B42FB7 /* EndlessDungeon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EndlessDungeon.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -198,7 +200,8 @@
 		4C71BBE119F719350012AD86 /* Effects */ = {
 			isa = PBXGroup;
 			children = (
-				4C71BBDF19F53F290012AD86 /* Effect.swift */,
+				4C786D7D1A340A93009903ED /* Property.swift */,
+				4C786D811A340F41009903ED /* SupernaturalAbility.swift */,
 			);
 			name = Effects;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 				TargetAttributes = {
 					4CC399BE19CE8FAC00B42FB7 = {
 						CreatedOnToolsVersion = 6.0.1;
+						DevelopmentTeam = UCW3EPV67B;
 					};
 					4CC399D719CE8FAC00B42FB7 = {
 						CreatedOnToolsVersion = 6.0.1;
@@ -465,10 +469,11 @@
 			files = (
 				4C00929619D5A68800AB6D38 /* PlayerEnums.swift in Sources */,
 				4CCA705619E712050020DFD6 /* CharacterEquipmentViewController.swift in Sources */,
-				4C71BBE019F53F290012AD86 /* Effect.swift in Sources */,
+				4C786D821A340F41009903ED /* SupernaturalAbility.swift in Sources */,
 				4CCA704919E6C4D20020DFD6 /* ContainerViewController.swift in Sources */,
 				4CC399C919CE8FAC00B42FB7 /* GameScene.swift in Sources */,
 				4C71BBE619F7233A0012AD86 /* TypeEnum.swift in Sources */,
+				4C786D7E1A340A93009903ED /* Property.swift in Sources */,
 				4CA748B919E9621D0097CCBF /* DungeonMaster.swift in Sources */,
 				4CC399CB19CE8FAC00B42FB7 /* GameViewController.swift in Sources */,
 				4CA748ED19F032E00097CCBF /* NPCTurnState.swift in Sources */,
@@ -610,10 +615,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = EndlessDungeon/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -621,10 +629,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = EndlessDungeon/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

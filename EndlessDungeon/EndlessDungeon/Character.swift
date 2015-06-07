@@ -266,14 +266,17 @@ class Character : WorldObject
     {
         var dam : Int = rollDie(weapon.qntyOfDamageDice, die: weapon.damageDie) + (weapon.weaponType != .Ranged ? strengthBonus : 0)
         
-        //Add in damage from any effects
-        if weapon.effects != nil
+        //Add in damage from any properties
+        if weapon.properties != nil
         {
-            for e in weapon.effects!
+            for e in weapon.properties!
             {
-                if e.qntyOfDamageDice > 0 && e.damageDie != .None
+                for damageQuantityDieTypes in e.damageQuantityDieTypes!
                 {
-                    dam += rollDie(e.qntyOfDamageDice, die: e.damageDie)
+                    if damageQuantityDieTypes.0 > 0 && damageQuantityDieTypes.1 != .None
+                    {
+                        dam += rollDie(damageQuantityDieTypes.0, die: damageQuantityDieTypes.1)
+                    }
                 }
             }
         }
@@ -287,8 +290,8 @@ class Character : WorldObject
         
         //Create damage label above player
         displayFadeAwayLabel(String(-damage), color: (damage > 0 ? UIColor.redColor() : UIColor.darkGrayColor()))
-        
-        debugPrintln("Took " + String(damage) + " damage : " + String(currentHitPoints) + " hit points left")
+
+        debugPrintln(name + " took \(damage) damage : \(currentHitPoints) hit points left")
         
         if(currentHitPoints <= 0)
         {

@@ -97,6 +97,7 @@ class Dungeon
         
         //Do player setup
         player = thePlayer
+        player.sprite.color = UIColor.blueColor()
         
         //Add player to dungeon
         addPlayerAtLocation(player, location: entranceTile.entranceCell.position)
@@ -355,6 +356,11 @@ class Dungeon
         }
         
         processTileCells(nextTile)
+        
+        //Possibly place enemies and treasure chests
+        entranceTile.tileSprite.addChild(createEnemyOnCurrentTile())
+        entranceTile.tileSprite.addChild(createTreasureChestOnCurrentTile())
+        //
         
         nextTile.roomGenerated = true
         
@@ -993,6 +999,11 @@ class Dungeon
         //draw enemy at random empty cell
         chosenCell.characterInCell = enemy
         enemy.tilePosition = chosenCell.index
+        
+        //Choose enemy color
+        enemy.sprite.color = UIColor.greenColor()
+        //
+        
         drawPlayerAtLocation(enemy, location: chosenCell.position)
         tile.enemies.append(enemy)
         
@@ -1027,10 +1038,10 @@ class Dungeon
     
     func drawPlayerAtLocation(player : Character, location : CGPoint)
     {
-        player.sprite = SKSpriteNode()
+        //player.sprite = SKSpriteNode()
         player.sprite.anchorPoint = CGPoint(x: -0.5, y: -0.5)
         
-        player.sprite.color = UIColor.blueColor()
+        //player.sprite.color = UIColor.blueColor()
         player.sprite.name = player.name
         
         player.sprite.size = CGSizeMake(CGFloat(cellSize / 2), CGFloat(cellSize / 2))

@@ -97,6 +97,7 @@ class Character : WorldObject
         
         name = "Empty Player"
         rollCharacter(1)
+        sprite = SKSpriteNode()
     }
     
     init(playerName : String)
@@ -105,6 +106,7 @@ class Character : WorldObject
         
         name = playerName
         rollCharacter(1)
+        sprite = SKSpriteNode()
     }
     
     init(playerName : String, level : Int)
@@ -113,6 +115,7 @@ class Character : WorldObject
         
         name = playerName
         rollCharacter(level)
+        sprite = SKSpriteNode()
     }
     
     func rollCharacter(level : Int) //Right now just creates a first level character regardless of level value passed in
@@ -497,37 +500,38 @@ class Character : WorldObject
         
         for var r : Int = 0; r < qnty; ++r
         {
+            
             switch die
-                {
-            case .d2:
-                total += Int(arc4random_uniform(2)) + 1
-                
-            case .d3:
-                total += Int(arc4random_uniform(3)) + 1
-                
-            case .d4:
-                total += Int(arc4random_uniform(4)) + 1
-                
-            case .d6:
-                total += Int(arc4random_uniform(6)) + 1
-                
-            case .d8:
-                total += Int(arc4random_uniform(8)) + 1
-                
-            case .d10:
-                total += Int(arc4random_uniform(10)) + 1
-                
-            case .d12:
-                total += Int(arc4random_uniform(12)) + 1
-                
-            case .d20:
-                total += Int(arc4random_uniform(20)) + 1
-                
-            case .dPercent:
-                total += Int(arc4random_uniform(100)) + 1
-                
-            case .None:
-                total += 0
+            {
+                case .d2:
+                    total += Int(arc4random_uniform(2)) + 1
+                    
+                case .d3:
+                    total += Int(arc4random_uniform(3)) + 1
+                    
+                case .d4:
+                    total += Int(arc4random_uniform(4)) + 1
+                    
+                case .d6:
+                    total += Int(arc4random_uniform(6)) + 1
+                    
+                case .d8:
+                    total += Int(arc4random_uniform(8)) + 1
+                    
+                case .d10:
+                    total += Int(arc4random_uniform(10)) + 1
+                    
+                case .d12:
+                    total += Int(arc4random_uniform(12)) + 1
+                    
+                case .d20:
+                    total += Int(arc4random_uniform(20)) + 1
+                    
+                case .dPercent:
+                    total += Int(arc4random_uniform(100)) + 1
+                    
+                case .None:
+                    total += 0
             }
         }
         

@@ -34,7 +34,7 @@ enum Size
     case Colossal
 }
 
-enum Die
+enum Die : Int
 {
     case d2
     case d3

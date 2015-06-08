@@ -84,6 +84,7 @@ class Tile
         sprite.anchorPoint = CGPoint(x: 0, y: 0)
         sprite.size = CGSizeMake(cellSize, cellSize)
         sprite.position = cell.position
+        
         return sprite
     }
     

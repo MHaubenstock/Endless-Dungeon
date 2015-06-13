@@ -14,6 +14,7 @@ class Cell
     var index : (Int, Int)
     var cellType : CellType
     var cellImage : String
+    var sprite : SKShapeNode?
     var position : CGPoint
     var itemInCell : Item?
     var characterInCell : Character?

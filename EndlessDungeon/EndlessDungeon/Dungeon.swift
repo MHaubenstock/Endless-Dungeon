@@ -119,7 +119,8 @@ class Dungeon
             tiles[y][x] = generateRoomForTile(x, tileY: y)
         }
         
-        return tiles[y][x].draw(gridLeft, gridBottom: gridBottom, cellSize: CGFloat(cellSize))
+        //return tiles[y][x].draw(gridLeft, gridBottom: gridBottom, cellSize: CGFloat(cellSize))
+        return tiles[y][x].draw()
     }
     
     func transitionToTileInDirection(direction : Direction) -> Tile
@@ -252,7 +253,7 @@ class Dungeon
             }
         }
         
-        processTileCells(entranceTile)
+        entranceTile.processCells()
         
         entranceTile.roomGenerated = true
         entranceTile.tileSprite = drawTile(currentTilePos.0, y: currentTilePos.1)
@@ -355,7 +356,7 @@ class Dungeon
             }
         }
         
-        processTileCells(nextTile)
+        nextTile.processCells()
         
         //Possibly place enemies and treasure chests
         entranceTile.tileSprite.addChild(createEnemyOnCurrentTile())
@@ -367,6 +368,7 @@ class Dungeon
         return nextTile
     }
     
+    /*
     func processTileCells(tile : Tile)
     {
         //This function looks at each cell and decides which image to use
@@ -376,17 +378,25 @@ class Dungeon
             for cell in cellRow
             {
                 //Dictionary of neighbor cells
-                var nCells : Dictionary<Direction, Cell> = tile.getNeighboringCells(cell, getDiagonals: false)
+                var nCells : Dictionary<Direction, Cell> = tile.getNeighboringCells(cell, getDiagonals: true)
 
                 var nType : Cell.CellType? = nCells[.North]?.cellType
                 var sType : Cell.CellType? = nCells[.South]?.cellType
                 var eType : Cell.CellType? = nCells[.East]?.cellType
                 var wType : Cell.CellType? = nCells[.West]?.cellType
+                var neType : Cell.CellType? = nCells[.Northeast]?.cellType
+                var nwType : Cell.CellType? = nCells[.Northwest]?.cellType
+                var seType : Cell.CellType? = nCells[.Southeast]?.cellType
+                var swType : Cell.CellType? = nCells[.Southwest]?.cellType
                 
                 var n : Bool = nType == .Wall
                 var s : Bool = sType == .Wall
                 var e : Bool = eType == .Wall
                 var w : Bool = wType == .Wall
+                var ne : Bool = neType == .Wall
+                var nw : Bool = nwType == .Wall
+                var se : Bool = seType == .Wall
+                var sw : Bool = swType == .Wall
                 
                 if(cell.cellType == .Empty || cell.cellType == .Exit || cell.cellType == .Entrance)
                 {
@@ -459,6 +469,7 @@ class Dungeon
             }
         }
     }
+    */
     
     func setDungeonWidth(dungeonWidth : Int, appendToFront : Bool)
     {

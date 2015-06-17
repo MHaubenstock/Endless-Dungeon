@@ -332,6 +332,7 @@ class Character : WorldObject
         })
         
         label.runAction(SKAction.fadeOutWithDuration(1.25))
+        //label.zPosition = 10
         
         sprite.addChild(label)
     }

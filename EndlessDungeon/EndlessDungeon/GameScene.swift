@@ -109,7 +109,14 @@ class GameScene: SKScene
             setGesturesEnabled(false)
             
             //Begin enemy turn
-            executeEnemyTurn()
+            if((initiative[initiativeTurn] as! NPCharacter).unconscious || (initiative[initiativeTurn] as! NPCharacter).dead)
+            {
+                nextCharacterTurn()
+            }
+            else
+            {
+                executeEnemyTurn()
+            }
         }
         else
         {
@@ -277,7 +284,7 @@ class GameScene: SKScene
     
     func executeEnemyTurn()
     {
-        //Start with a basic depth-first search to get within range and then attack the player
+        //Start with a basic breadth-first search to get within range and then attack the player
         //Update to something more intelligent later
         var enemy : NPCharacter = initiative[initiativeTurn] as! NPCharacter
         var playerCell : (Int, Int) = dungeon.player.tilePosition
@@ -375,6 +382,7 @@ procedure BFS(G,v) is
 20 end BFS
 */
         /*
+        //This is the depth first search
         //If not within range to attack
         if(Dungeon.distanceBetweenCellsByIndex(playerCell, toIndex: currentState.npcTilePosition) > enemy.attackRange())
         {

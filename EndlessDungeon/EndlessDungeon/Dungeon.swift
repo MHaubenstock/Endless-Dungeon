@@ -372,7 +372,7 @@ class Dungeon
         //This function looks at each cell and decides which image to use
         for cellRow in tile.cells
         {
-            //TODO: Update this function to draw the tiles instead of loading images, also get the diagonals and check for walls sothe dungeon can correctly draw corners
+            //TODO: Update this function to draw the tiles instead of loading images, also get the diagonals and check for walls so the dungeon can correctly draw corners
             for cell in cellRow
             {
                 //Dictionary of neighbor cells
@@ -1002,6 +1002,7 @@ class Dungeon
         enemy.tilePosition = chosenCell.index
         
         //Choose enemy color
+        //TODO: Set enemy color depending upon the enemy, not just green
         enemy.sprite.color = UIColor.greenColor()
         //
         

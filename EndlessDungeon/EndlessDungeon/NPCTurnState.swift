@@ -96,26 +96,26 @@ class NPCTurnState
     func getNextStates() -> [NPCTurnState]
     {
         var nextStates : [NPCTurnState] = []
-        var nextPossiblePositions : [((Int, Int), Dungeon.Direction)] = [((npcTilePosition.0, npcTilePosition.1 - 1), Dungeon.Direction.South), ((npcTilePosition.0, npcTilePosition.1 + 1), Dungeon.Direction.North), ((npcTilePosition.0 + 1, npcTilePosition.1), Dungeon.Direction.East), ((npcTilePosition.0 - 1, npcTilePosition.1), Dungeon.Direction.West)]
-        var dungeon : Dungeon = Dungeon.sharedInstance
+        let nextPossiblePositions : [((Int, Int), Dungeon.Direction)] = [((npcTilePosition.0, npcTilePosition.1 - 1), Dungeon.Direction.South), ((npcTilePosition.0, npcTilePosition.1 + 1), Dungeon.Direction.North), ((npcTilePosition.0 + 1, npcTilePosition.1), Dungeon.Direction.East), ((npcTilePosition.0 - 1, npcTilePosition.1), Dungeon.Direction.West)]
+        let dungeon : Dungeon = Dungeon.sharedInstance
         
         for p in nextPossiblePositions
         {
-            var cellType : Cell.CellType = dungeon.getCurrentTile().cells[p.0.1][p.0.0].cellType
+            let cellType : Cell.CellType = dungeon.getCurrentTile().cells[p.0.1][p.0.0].cellType
             
             if(isValidIndex(p.0) && cellType != Cell.CellType.Wall && cellType != Cell.CellType.Exit && cellType != Cell.CellType.Entrance)
             {
                 //If the cell is empty then this is a possible move
                 if(tileCellStates[p.0.1][p.0.0] == 3)
                 {
-                    var newCellState : [[Int]] = tileCellStates
+                    let newCellState : [[Int]] = tileCellStates
                     
                     //Swap enemy position to new position
                     tileCellStates[p.0.1][p.0.0] = 4
                     //Make old position empty
                     tileCellStates[npcTilePosition.1][npcTilePosition.0] = 3
                     
-                    var turnState : NPCTurnState = NPCTurnState(movementRem: movementRemaining - 1, tilePos: p.0, weapRange: weaponRange, cellState: newCellState, fState: self)
+                    let turnState : NPCTurnState = NPCTurnState(movementRem: movementRemaining - 1, tilePos: p.0, weapRange: weaponRange, cellState: newCellState, fState: self)
                     turnState.moveDirection = p.1
                     
                     nextStates.append(turnState)

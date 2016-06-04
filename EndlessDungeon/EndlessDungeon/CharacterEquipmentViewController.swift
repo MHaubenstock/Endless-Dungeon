@@ -50,21 +50,21 @@ class CharacterEquipmentViewController : UIViewController, UICollectionViewDataS
         view.frame = dungeon.frame
         
         //Set up collection view stuff
-        var leftHandSlotTapGesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: ("equipItem:"))
-        var rightHandSlotTapGesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: ("equipItem:"))
-        var headSlotTapGesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: ("equipItem:"))
-        var bodySlotTapGesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: ("equipItem:"))
-        var shoulderSlotTapGesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: ("equipItem:"))
-        var handSlotTapGesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: ("equipItem:"))
-        var wristSlotTapGesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: ("equipItem:"))
-        var feetSlotTapGesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: ("equipItem:"))
-        var waistSlotTapGesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: ("equipItem:"))
-        var torsoSlotTapGesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: ("equipItem:"))
-        var eyesSlotTapGesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: ("equipItem:"))
-        var ring1SlotTapGesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: ("equipItem:"))
-        var ring2SlotTapGesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: ("equipItem:"))
-        var neckSlotTapGesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: ("equipItem:"))
-        var ammoSlotTapGesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: ("equipItem:"))
+        let leftHandSlotTapGesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: ("equipItem:"))
+        let rightHandSlotTapGesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: ("equipItem:"))
+        let headSlotTapGesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: ("equipItem:"))
+        let bodySlotTapGesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: ("equipItem:"))
+        let shoulderSlotTapGesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: ("equipItem:"))
+        let handSlotTapGesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: ("equipItem:"))
+        let wristSlotTapGesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: ("equipItem:"))
+        let feetSlotTapGesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: ("equipItem:"))
+        let waistSlotTapGesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: ("equipItem:"))
+        let torsoSlotTapGesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: ("equipItem:"))
+        let eyesSlotTapGesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: ("equipItem:"))
+        let ring1SlotTapGesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: ("equipItem:"))
+        let ring2SlotTapGesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: ("equipItem:"))
+        let neckSlotTapGesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: ("equipItem:"))
+        let ammoSlotTapGesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: ("equipItem:"))
 
         leftHandSlot.addGestureRecognizer(leftHandSlotTapGesture)
         rightHandSlot.addGestureRecognizer(rightHandSlotTapGesture)
@@ -82,11 +82,11 @@ class CharacterEquipmentViewController : UIViewController, UICollectionViewDataS
         neckSlot.addGestureRecognizer(neckSlotTapGesture)
         ammoSlot.addGestureRecognizer(ammoSlotTapGesture)
         
-        var itemCollectionDragGesture : UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: Selector("dragItem:"))
+        let itemCollectionDragGesture : UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: Selector("dragItem:"))
         itemView.addGestureRecognizer(itemCollectionDragGesture)
         
         
-        var itemViewFlowLayout : UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        let itemViewFlowLayout : UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         itemViewFlowLayout.itemSize = CGSize(width: itemView.frame.width * 0.25, height: itemView.frame.height * 0.05)
         itemViewFlowLayout.sectionInset = UIEdgeInsets(top: 7, left: 7, bottom: 7, right: 7)
         
@@ -95,7 +95,7 @@ class CharacterEquipmentViewController : UIViewController, UICollectionViewDataS
         //Manually align the slot views here
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -118,7 +118,7 @@ class CharacterEquipmentViewController : UIViewController, UICollectionViewDataS
     {
         if(highlightedCell != nil)
         {
-            var theVeiw : UIView? = view.hitTest(gesture.locationInView(view), withEvent: nil)
+            let theVeiw : UIView? = view.hitTest(gesture.locationInView(view), withEvent: nil)
 
             if(theVeiw != nil)
             {
@@ -127,9 +127,9 @@ class CharacterEquipmentViewController : UIViewController, UICollectionViewDataS
                     //THIS WILL CHANGE WHEN I LAY OUT THE SLOTS MANUALLY
                     
                     //If item.slot == clicked slot
-                    debugPrintln(highlightedCell)
+                    debugPrint(highlightedCell)
                     player.equipItem(player.inventory.contents[itemView.indexPathForCell(highlightedCell!)!.row])
-                    debugPrintln("Equipped an item")
+                    debugPrint("Equipped an item")
                 }
             }
         }
@@ -176,7 +176,7 @@ class CharacterEquipmentViewController : UIViewController, UICollectionViewDataS
         */
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent)
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?)
     {
         for touch : AnyObject in touches
         {
@@ -197,7 +197,7 @@ class CharacterEquipmentViewController : UIViewController, UICollectionViewDataS
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
     {
-        var itemCell : UICollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("InventoryItemCell", forIndexPath: indexPath) as! UICollectionViewCell
+        let itemCell : UICollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("InventoryItemCell", forIndexPath: indexPath) 
         
         return itemCell
     }
@@ -206,7 +206,7 @@ class CharacterEquipmentViewController : UIViewController, UICollectionViewDataS
     {
         highlightedCell = collectionView.cellForItemAtIndexPath(indexPath)
         itemLabel.text = player.inventory.contents[indexPath.row].name
-        debugPrintln(highlightedCell)
+        debugPrint(highlightedCell)
     }
     //
 }

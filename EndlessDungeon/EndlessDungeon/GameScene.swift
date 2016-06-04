@@ -96,7 +96,7 @@ class GameScene: SKScene
     {
         initiativeTurn = (initiativeTurn + 1) % initiative.count
         
-        debugPrintln(initiative[initiativeTurn].name + " turn")
+        debugPrint(initiative[initiativeTurn].name + " turn")
         
         usedStandardAction = false
         usedMoveAction = false
@@ -141,7 +141,7 @@ class GameScene: SKScene
     {
         if(usedMoveAction)
         {
-            debugPrintln("Already completed your move action")
+            debugPrint("Already completed your move action")
             return
         }
         
@@ -162,7 +162,7 @@ class GameScene: SKScene
                 nextTileSprite = dungeon.movePlayerInDirection(.West)
             
             default:
-                debugPrintln("Not sure which direction you swiped... are you a wizard?")
+                debugPrint("Not sure which direction you swiped... are you a wizard?")
         }
         
         //Close any open container
@@ -192,11 +192,11 @@ class GameScene: SKScene
     {
         if(gestureInfo.state == UIGestureRecognizerState.Began)
         {
-            var cell : Cell = dungeon.cellAtScreenLocation(mirroredPosition(gestureInfo.locationInView(self.view), xMirror: false, yMirror: true))!
+            let cell : Cell = dungeon.cellAtScreenLocation(mirroredPosition(gestureInfo.locationInView(self.view), xMirror: false, yMirror: true))!
             
-            var character : Character? = cell.characterInCell
-            var openable : Openable? = cell.openableInCell
-            var item : Item? = cell.itemInCell
+            let character : Character? = cell.characterInCell
+            let openable : Openable? = cell.openableInCell
+            let item : Item? = cell.itemInCell
             
             //If this cell has an attackable character
             if(character != nil)
@@ -265,7 +265,7 @@ class GameScene: SKScene
             }
             else
             {
-                debugPrintln("This is an empty cell")
+                debugPrint("This is an empty cell")
             }
         }
     }
@@ -278,7 +278,7 @@ class GameScene: SKScene
             usedMoveAction = true
             usedMinorAction = true
         
-            debugPrintln("Ended your turn")
+            debugPrint("Ended your turn")
         }
     }
     
@@ -286,8 +286,8 @@ class GameScene: SKScene
     {
         //Start with a basic breadth-first search to get within range and then attack the player
         //Update to something more intelligent later
-        var enemy : NPCharacter = initiative[initiativeTurn] as! NPCharacter
-        var playerCell : (Int, Int) = dungeon.player.tilePosition
+        let enemy : NPCharacter = initiative[initiativeTurn] as! NPCharacter
+        let playerCell : (Int, Int) = dungeon.player.tilePosition
         var currentState : NPCTurnState = NPCTurnState(movementRem: enemy.speed / 5, tilePos: enemy.tilePosition, weapRange: enemy.rightHand.0.range, cellState: dungeon.getCurrentTile().getSimplifiedTileState(), fState: nil)
         currentState.tileCellStates[enemy.tilePosition.1][enemy.tilePosition.0] = 4
         
@@ -299,7 +299,7 @@ class GameScene: SKScene
         //Move to its own method later
         while fringe.count > 0
         {
-            fringe.sort{$0.stateValue < $1.stateValue}
+            fringe.sortInPlace{$0.stateValue < $1.stateValue}
             currentState = fringe.removeAtIndex(0)
             
             //This may be working incorrectly
@@ -450,7 +450,7 @@ procedure BFS(G,v) is
         //If within range to attack, then attack
         if(Dungeon.distanceBetweenCellsByIndex(playerCell, toIndex: enemy.tilePosition) <= enemy.attackRange())
         {
-            debugPrintln(enemy.name + " attacked!")
+            debugPrint(enemy.name + " attacked!")
             dungeon.attackCharacter(enemy, defender: dungeon.player)
         }
         
@@ -461,7 +461,7 @@ procedure BFS(G,v) is
     {
         if(gestureInfo.state == UIGestureRecognizerState.Began)
         {
-            var character : Character? = dungeon.cellAtScreenLocation(mirroredPosition(gestureInfo.locationInView(self.view), xMirror: false, yMirror: true))?.characterInCell
+            let character : Character? = dungeon.cellAtScreenLocation(mirroredPosition(gestureInfo.locationInView(self.view), xMirror: false, yMirror: true))?.characterInCell
 
             //If this cell has an attackable character
             if(character != nil)
@@ -477,7 +477,7 @@ procedure BFS(G,v) is
             }
             else
             {
-                debugPrintln("No character in this cell")
+                debugPrint("No character in this cell")
             }
         }
     }

@@ -72,8 +72,8 @@ class Tile
     
     func createCell(cell : Cell, cellSize : CGFloat) -> SKSpriteNode
     {
-        var sprite = SKSpriteNode(imageNamed: cell.cellImage)
-        sprite.name = cell.cellImage.stringByReplacingOccurrencesOfString(".png", withString: "", options: nil, range: nil)
+        let sprite = SKSpriteNode(imageNamed: cell.cellImage)
+        sprite.name = cell.cellImage.stringByReplacingOccurrencesOfString(".png", withString: "", options: [], range: nil)
         
         if(sprite.name == "Column")
         {

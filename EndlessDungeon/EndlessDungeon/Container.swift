@@ -54,7 +54,7 @@ class Container : Openable
     
     func removeItem(index : Int) -> Item
     {
-        var itemToRemove : Item = contents.removeAtIndex(index)
+        let itemToRemove : Item = contents.removeAtIndex(index)
         
         maintainContentsDict()
         

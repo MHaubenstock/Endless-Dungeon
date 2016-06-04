@@ -238,7 +238,7 @@ class Character : WorldObject
         
         //Sort in descending order
         //rolls.sorted{$0 > $1}
-        rolls.sort{$0 > $1}
+        rolls.sortInPlace{$0 > $1}
         
         //return the sum of the largest 3 values
         return rolls[0] + rolls[1] + rolls[2]
@@ -294,7 +294,7 @@ class Character : WorldObject
         //Create damage label above player
         displayFadeAwayLabel(String(-damage), color: (damage > 0 ? UIColor.redColor() : UIColor.darkGrayColor()))
 
-        debugPrintln(name + " took \(damage) damage : \(currentHitPoints) hit points left")
+        debugPrint(name + " took \(damage) damage : \(currentHitPoints) hit points left")
         
         if(currentHitPoints <= 0)
         {
@@ -320,7 +320,7 @@ class Character : WorldObject
     func displayFadeAwayLabel(text : String, color : UIColor)
     {
         //create action to make label move up and disappear
-        var label : SKLabelNode = SKLabelNode(text: text)
+        let label : SKLabelNode = SKLabelNode(text: text)
         label.position = CGPoint(x: 15, y: 20)
         label.fontColor = color
         label.fontSize = 12
@@ -544,9 +544,9 @@ class Character : WorldObject
         var highestABonus : Int = 0
         var highestSBonus : Int = 0
         var highestNABonus : Int = 0
-        var highestDBonus : Int = 0
+        let highestDBonus : Int = 0
         var highestMABonus : Int = 0
-        var eItems : [Item] = [leftHand.0, rightHand.0, head.0, body.0, shoulders.0, hands.0, wrists.0, feet.0, waist.0, torso.0, eyes.0, ring1.0, ring2.0, neck.0, ammo.0]
+        let eItems : [Item] = [leftHand.0, rightHand.0, head.0, body.0, shoulders.0, hands.0, wrists.0, feet.0, waist.0, torso.0, eyes.0, ring1.0, ring2.0, neck.0, ammo.0]
         
         for i in eItems
         {
